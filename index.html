@@ -28,7 +28,6 @@
   .ic{width:20px;height:20px;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;fill:none}
   .ic.sm{width:16px;height:16px;stroke-width:1.7}
   .ic.lg{width:26px;height:26px;stroke-width:1.4}
-
   header{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:18px;padding:14px clamp(16px,4vw,40px);background:rgba(14,13,22,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft);flex-wrap:wrap}
   .brand{display:flex;align-items:center;gap:11px;cursor:pointer;flex-shrink:0}
   .sigil{width:34px;height:34px;flex:0 0 34px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(150deg,#2a2438,#191525);border:1px solid var(--gold-deep);box-shadow:inset 0 0 12px rgba(217,178,106,.18);color:var(--gold)}
@@ -46,7 +45,7 @@
   .hbtn.gold:hover{filter:brightness(1.05);color:#1a160c}
   .dm-tools{display:flex;align-items:center;gap:8px;position:relative}
   .dm-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);padding:5px 9px;border:1px solid var(--gold-deep);border-radius:7px;background:rgba(217,178,106,.06)}
-  .menu{position:absolute;top:calc(100% + 8px);right:0;width:240px;z-index:60;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 18px 50px rgba(0,0,0,.55);display:none}
+  .menu{position:absolute;top:calc(100% + 8px);right:0;width:250px;z-index:60;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 18px 50px rgba(0,0,0,.55);display:none}
   .menu.open{display:block;animation:pop .16s var(--ease)}
   .menu-item{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:9px 10px;border-radius:8px;font-size:13.5px;color:var(--text-dim)}
   .menu-item:hover{background:var(--surface-3);color:var(--text)}
@@ -54,10 +53,15 @@
   .menu-note{padding:8px 10px 4px;font-size:11px;color:var(--text-faint);line-height:1.45}
   .menu-sep{height:1px;background:var(--line-soft);margin:5px 8px}
   @keyframes pop{from{opacity:0;transform:translateY(-6px) scale(.98)}to{opacity:1;transform:none}}
-
   main{max-width:1180px;margin:0 auto;padding:0 clamp(16px,4vw,40px) 80px}
-  .search-stage{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding-top:34px;transition:padding .4s var(--ease)}
-  .search-stage.centered{min-height:calc(100vh - 200px);justify-content:center;padding-top:0}
+  .search-stage{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding-top:30px;transition:padding .4s var(--ease)}
+  .search-stage.centered{min-height:calc(100vh - 150px);justify-content:center;padding-top:0}
+  .hero{width:100%;max-width:720px;height:clamp(150px,26vw,240px);border-radius:18px;overflow:hidden;position:relative;margin:0 auto 26px;border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.45), inset 0 0 60px rgba(0,0,0,.3);display:none}
+  .search-stage.centered .hero.has-art{display:block;animation:heroIn .6s var(--ease)}
+  @keyframes heroIn{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:none}}
+  .hero img{width:100%;height:100%;object-fit:cover;object-position:center}
+  .hero-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,13,22,.15) 0%,rgba(14,13,22,.05) 40%,rgba(14,13,22,.85) 100%);pointer-events:none}
+  .hero-frame{position:absolute;inset:0;border-radius:18px;box-shadow:inset 0 0 0 1px rgba(217,178,106,.18);pointer-events:none}
   .invocation{font-family:var(--display);font-weight:400;font-style:italic;font-size:clamp(28px,5.5vw,52px);line-height:1.08;letter-spacing:.3px;margin:0 0 6px;background:linear-gradient(180deg,#f6efdc,#c9b07e);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0;transform:translateY(10px);transition:.5s var(--ease)}
   .search-stage.centered .invocation{opacity:1;transform:none}
   .invocation-sub{color:var(--text-dim);font-size:14.5px;margin:0 0 26px;max-width:440px;opacity:0;transition:.5s .05s var(--ease)}
@@ -66,31 +70,45 @@
   .search-box{display:flex;align-items:center;gap:12px;width:100%;padding:15px 18px;border-radius:15px;background:var(--surface);border:1px solid var(--line);transition:.22s var(--ease)}
   .search-box:focus-within{border-color:var(--gold-soft);box-shadow:0 0 0 4px rgba(217,178,106,.10), 0 12px 40px rgba(217,178,106,.10);background:var(--surface-2)}
   .search-box .ic{color:var(--gold);flex-shrink:0}
-  #searchInput{flex:1;border:none;background:none;outline:none;font-size:17px;color:var(--text)}
+  #searchInput{flex:1;border:none;background:none;outline:none;font-size:17px;color:var(--text);min-width:0}
   #searchInput::placeholder{color:var(--text-faint)}
   .search-clear{display:none;color:var(--text-faint);padding:4px;border-radius:6px}
   .search-clear:hover{color:var(--text);background:var(--surface-3)}
   .search-clear.show{display:block}
-  .quicklinks{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;max-width:560px}
+  .quicklinks{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;max-width:600px}
   .quick{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--text-dim);padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:var(--surface);transition:.16s var(--ease)}
   .quick:hover{color:var(--text);border-color:var(--surface-3);transform:translateY(-1px)}
   .quick .dot{width:7px;height:7px;border-radius:50%}
-  .results-meta{display:flex;align-items:baseline;gap:10px;margin:30px 2px 16px;width:100%}
+  .tagbar{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:14px;max-width:600px}
+  .tagbar .tag-pill{font-size:12px;color:var(--gold-soft);padding:4px 11px;border-radius:20px;border:1px solid var(--gold-deep);background:rgba(217,178,106,.05);transition:.16s var(--ease)}
+  .tagbar .tag-pill:hover{background:rgba(217,178,106,.13);color:var(--gold)}
+  .tagbar .tag-lead{font-size:11px;color:var(--text-faint);letter-spacing:.08em;text-transform:uppercase;align-self:center;margin-right:2px}
+  .results-meta{display:flex;align-items:baseline;gap:10px;margin:30px 2px 16px;width:100%;flex-wrap:wrap}
   .results-meta h2{font-family:var(--display);font-weight:500;font-size:21px;margin:0}
   .results-meta .count{font-size:12.5px;color:var(--text-faint);letter-spacing:.04em}
+  .active-filters{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+  .filter-chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--gold);padding:4px 10px;border-radius:16px;border:1px solid var(--gold-deep);background:rgba(217,178,106,.07)}
+  .filter-chip button{color:var(--gold-soft);display:grid;place-items:center}
+  .filter-chip button:hover{color:var(--gold)}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;width:100%}
   .card{position:relative;text-align:left;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.18s var(--ease)}
   .card:hover{transform:translateY(-3px);border-color:var(--surface-3);box-shadow:0 14px 34px rgba(0,0,0,.4)}
-  .card-thumb{height:130px;background:var(--surface-2);position:relative;overflow:hidden;display:grid;place-items:center;border-bottom:1px solid var(--line-soft)}
-  .card-thumb img{width:100%;height:100%;object-fit:cover}
+  .card-thumb{height:132px;background:var(--surface-2);position:relative;overflow:hidden;display:grid;place-items:center;border-bottom:1px solid var(--line-soft)}
+  .img-main{width:100%;height:100%;position:relative;z-index:1}
+  .img-blurbg{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(16px) brightness(.55);transform:scale(1.15);z-index:0}
   .card-thumb .ph{opacity:.5}
   .card-thumb .ph .ic{width:38px;height:38px;stroke-width:1.2}
-  .card-body{padding:13px 14px 15px;display:flex;flex-direction:column;gap:5px;flex:1}
-  .card-cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-dim)}
+  .ph{display:grid;place-items:center;width:100%;height:100%}
+  .card-body{padding:13px 14px 15px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .card-cats{display:flex;flex-wrap:wrap;gap:6px}
+  .card-cat{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim)}
   .card-cat .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  .card-cat.more{color:var(--text-faint)}
   .card-name{font-family:var(--display);font-weight:500;font-size:18px;line-height:1.2}
   .card-teaser{font-size:12.5px;color:var(--text-faint);line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .hidden-flag{position:absolute;top:10px;right:10px;z-index:2;display:inline-flex;align-items:center;gap:5px;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;padding:4px 8px;border-radius:6px;background:rgba(14,13,22,.85);color:var(--gold);border:1px solid var(--gold-deep);backdrop-filter:blur(6px)}
+  .card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+  .card-tags .t{font-size:10.5px;color:var(--gold-soft);background:rgba(217,178,106,.06);border:1px solid var(--gold-deep);padding:1px 7px;border-radius:11px}
+  .hidden-flag{position:absolute;top:10px;right:10px;z-index:3;display:inline-flex;align-items:center;gap:5px;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;padding:4px 8px;border-radius:6px;background:rgba(14,13,22,.85);color:var(--gold);border:1px solid var(--gold-deep);backdrop-filter:blur(6px)}
   .card.is-hidden{opacity:.72}
   .card.is-hidden:hover{opacity:1}
   .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-faint);border:1px dashed var(--line);border-radius:var(--radius);background:rgba(255,255,255,.012)}
@@ -112,19 +130,24 @@
   .overlay{position:fixed;inset:0;z-index:80;display:none;align-items:flex-start;justify-content:center;padding:clamp(16px,5vh,60px) 16px;background:rgba(8,7,14,.66);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);overflow-y:auto}
   .overlay.open{display:flex;animation:fade .2s var(--ease)}
   @keyframes fade{from{opacity:0}to{opacity:1}}
-  .sheet{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:rise .26s var(--ease);position:relative}
+  .overlay-art{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(42px) brightness(.32) saturate(1.1);transform:scale(1.2);z-index:0;opacity:0;transition:opacity .4s var(--ease);pointer-events:none}
+  .overlay-art.show{opacity:.9}
+  .sheet{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.6);animation:rise .26s var(--ease);position:relative;z-index:1}
   @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
   .sheet-close{position:absolute;top:14px;right:14px;z-index:5;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;color:var(--text-dim);background:rgba(14,13,22,.6);border:1px solid var(--line)}
   .sheet-close:hover{color:var(--text);background:var(--surface-3)}
-  .detail{max-width:620px}
-  .detail-hero{height:230px;border-radius:18px 18px 0 0;overflow:hidden;background:var(--surface-2);display:grid;place-items:center;border-bottom:1px solid var(--line-soft)}
-  .detail-hero img{width:100%;height:100%;object-fit:cover}
+  .detail{max-width:640px}
+  .detail-hero{height:250px;border-radius:18px 18px 0 0;overflow:hidden;background:var(--surface-2);position:relative;display:grid;place-items:center;border-bottom:1px solid var(--line-soft)}
   .detail-hero .ph .ic{width:54px;height:54px;opacity:.4;stroke-width:1}
   .detail-body{padding:24px clamp(20px,4vw,32px) 30px}
-  .detail-cat{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+  .detail-cats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+  .detail-cat{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);border:1px solid var(--line);padding:4px 10px;border-radius:16px}
   .detail-cat .dot{width:8px;height:8px;border-radius:50%}
   .detail-name{font-family:var(--display);font-weight:600;font-size:clamp(26px,4.5vw,34px);line-height:1.1;margin:0}
-  .detail-hidden-note{display:inline-flex;align-items:center;gap:7px;margin-top:12px;font-size:12px;color:var(--gold);background:rgba(217,178,106,.07);border:1px solid var(--gold-deep);padding:6px 11px;border-radius:8px}
+  .detail-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+  .detail-tags .t{font-size:12px;color:var(--gold-soft);background:rgba(217,178,106,.06);border:1px solid var(--gold-deep);padding:3px 10px;border-radius:14px;cursor:pointer;transition:.14s var(--ease)}
+  .detail-tags .t:hover{background:rgba(217,178,106,.14);color:var(--gold)}
+  .detail-hidden-note{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-size:12px;color:var(--gold);background:rgba(217,178,106,.07);border:1px solid var(--gold-deep);padding:6px 11px;border-radius:8px}
   .detail-desc{margin-top:18px;color:#d6d1e2;font-size:14.5px;line-height:1.65;white-space:pre-wrap}
   .detail-desc:empty{display:none}
   .stat-block{margin-top:24px;border-top:1px solid var(--line);padding-top:8px}
@@ -134,7 +157,11 @@
   .stat-label{font-size:13.5px;color:var(--text-dim);display:flex;align-items:center;gap:8px}
   .stat-label .ic{color:var(--gold-soft)}
   .stat-value{font-family:var(--mono);font-size:14px;color:var(--text);text-align:right;letter-spacing:-.01em}
-  .stat-row.secret{background:linear-gradient(90deg,rgba(217,178,106,.05),transparent);border-radius:6px;padding-left:8px;margin-left:-8px}
+  .stat-blockrow{padding:12px 2px;border-bottom:1px solid var(--line-soft)}
+  .stat-blockrow:last-child{border-bottom:none}
+  .sb-label{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-soft);display:flex;align-items:center;gap:7px;margin-bottom:6px}
+  .sb-value{font-size:14.5px;color:#d6d1e2;line-height:1.6;white-space:pre-wrap}
+  .stat-row.secret,.stat-blockrow.secret{background:linear-gradient(90deg,rgba(217,178,106,.05),transparent);border-radius:6px;padding-left:8px;margin-left:-8px}
   .stat-row.secret .stat-value{color:var(--gold)}
   .detail-actions{display:flex;gap:10px;margin-top:26px}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:10px;font-size:14px;font-weight:500;transition:.16s var(--ease);border:1px solid var(--line)}
@@ -144,28 +171,46 @@
   .btn.ghost-danger{color:var(--danger)}
   .btn.ghost-danger:hover{background:rgba(205,107,98,.12);border-color:var(--danger-soft);color:#f0a39c}
   .btn.full{flex:1}
-  .editor{max-width:920px}
+  .editor{max-width:960px}
   .editor-head{padding:22px clamp(20px,4vw,30px) 18px;border-bottom:1px solid var(--line)}
   .editor-head h2{font-family:var(--display);font-weight:500;font-size:23px;margin:0;display:flex;align-items:center;gap:10px}
   .editor-head h2 .ic{color:var(--gold)}
   .editor-head p{color:var(--text-faint);font-size:13px;margin:5px 0 0}
   .editor-grid{display:grid;grid-template-columns:1fr;gap:0}
-  @media(min-width:780px){.editor-grid{grid-template-columns:1.05fr .95fr}}
+  @media(min-width:820px){.editor-grid{grid-template-columns:1.05fr .95fr}}
   .editor-form{padding:22px clamp(20px,4vw,30px) 28px;display:flex;flex-direction:column;gap:18px}
   .editor-preview{background:var(--bg-2);border-left:1px solid var(--line);padding:22px clamp(18px,3vw,26px) 28px}
-  @media(max-width:779px){.editor-preview{border-left:none;border-top:1px solid var(--line)}}
+  @media(max-width:819px){.editor-preview{border-left:none;border-top:1px solid var(--line)}}
   .field label{display:block;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);margin-bottom:7px;font-weight:500}
-  .field input[type=text],.field input[type=url],.field textarea,.field select{width:100%;padding:11px 13px;border-radius:10px;font-size:14.5px;background:var(--surface-2);border:1px solid var(--line);outline:none;transition:.16s var(--ease)}
-  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold-soft);box-shadow:0 0 0 3px rgba(217,178,106,.1);background:var(--surface)}
+  .field input[type=text],.field input[type=url],.field textarea{width:100%;padding:11px 13px;border-radius:10px;font-size:14.5px;background:var(--surface-2);border:1px solid var(--line);outline:none;transition:.16s var(--ease)}
+  .field input:focus,.field textarea:focus{border-color:var(--gold-soft);box-shadow:0 0 0 3px rgba(217,178,106,.1);background:var(--surface)}
   .field textarea{resize:vertical;min-height:96px;line-height:1.6}
-  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%23A29CB4' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='m3 5 4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
-  .field-row{display:flex;gap:14px}
-  .field-row .field{flex:1}
-  .img-field{display:flex;gap:12px;align-items:flex-start}
-  .img-field .field{flex:1}
-  .img-prev{width:64px;height:64px;border-radius:10px;flex:0 0 64px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden;display:grid;place-items:center;margin-top:25px}
-  .img-prev img{width:100%;height:100%;object-fit:cover}
-  .img-prev .ic{opacity:.4;width:22px;height:22px}
+  .cat-choose{display:flex;flex-wrap:wrap;gap:8px}
+  .cat-opt{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:20px;font-size:13px;color:var(--text-dim);border:1px solid var(--line);background:var(--surface-2);transition:.14s var(--ease)}
+  .cat-opt:hover{color:var(--text);border-color:var(--surface-3)}
+  .cat-opt .dot{width:8px;height:8px;border-radius:50%}
+  .cat-opt.on{color:var(--text);border-color:var(--gold-deep);background:rgba(217,178,106,.09)}
+  .cat-opt .check{display:none}
+  .cat-opt.on .check{display:block;color:var(--gold)}
+  .tags-edit{display:flex;flex-direction:column;gap:9px}
+  .tag-chips{display:flex;flex-wrap:wrap;gap:7px}
+  .tag-chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--gold);padding:4px 6px 4px 11px;border-radius:16px;border:1px solid var(--gold-deep);background:rgba(217,178,106,.07)}
+  .tag-chip button{color:var(--gold-soft);display:grid;place-items:center;width:16px;height:16px;border-radius:50%}
+  .tag-chip button:hover{color:var(--gold);background:rgba(217,178,106,.15)}
+  .tag-chips:empty{display:none}
+  #tagInput{width:100%;padding:10px 13px;border-radius:10px;font-size:14px;background:var(--surface-2);border:1px solid var(--line);outline:none}
+  #tagInput:focus{border-color:var(--gold-soft);box-shadow:0 0 0 3px rgba(217,178,106,.1)}
+  .img-block{display:flex;flex-direction:column;gap:12px}
+  .img-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .fit-toggle{display:flex;gap:2px;background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:2px}
+  .fit-toggle button{font-size:12.5px;padding:6px 12px;border-radius:7px;color:var(--text-faint);display:inline-flex;align-items:center;gap:6px}
+  .fit-toggle button.active{background:var(--surface-3);color:var(--text)}
+  .focal-hint{font-size:11.5px;color:var(--text-faint)}
+  .focal-box{position:relative;width:100%;height:180px;border-radius:12px;overflow:hidden;background:var(--surface-2);border:1px solid var(--line);cursor:crosshair}
+  .focal-box img{width:100%;height:100%}
+  .focal-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;height:100%;color:var(--text-faint);font-size:12.5px;cursor:default}
+  .focal-empty .ic{opacity:.5;width:26px;height:26px}
+  .focal-dot{position:absolute;width:22px;height:22px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.6);transform:translate(-50%,-50%);z-index:3;pointer-events:none;background:rgba(217,178,106,.4)}
   .visibility-toggle{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 15px;border-radius:11px;background:var(--surface-2);border:1px solid var(--line)}
   .vt-text{display:flex;flex-direction:column;gap:2px}
   .vt-text strong{font-size:13.5px;font-weight:500}
@@ -176,26 +221,54 @@
   .switch.on::after{left:21px;background:var(--gold)}
   .stats-editor-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
   .stats-editor-head label{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--text-dim);font-weight:500;margin:0}
-  .stat-edit-list{display:flex;flex-direction:column;gap:8px}
-  .stat-edit-row{display:grid;grid-template-columns:1fr 1fr auto;gap:7px;align-items:center}
-  .stat-edit-row input{width:100%;padding:9px 11px;border-radius:8px;font-size:13.5px;background:var(--surface-2);border:1px solid var(--line);outline:none;transition:.16s var(--ease)}
-  .stat-edit-row input:focus{border-color:var(--gold-soft);background:var(--surface)}
-  .stat-edit-row input.val{font-family:var(--mono);font-size:12.5px}
-  .row-ctrls{display:flex;gap:3px;align-items:center}
-  .rbtn{width:30px;height:34px;border-radius:7px;display:grid;place-items:center;color:var(--text-faint);background:var(--surface-2);border:1px solid var(--line);transition:.14s var(--ease)}
+  .stats-editor-head .hint{font-size:11px;color:var(--text-faint);text-transform:none;letter-spacing:0}
+  .stat-edit-list{display:flex;flex-direction:column;gap:10px}
+  .stat-edit-row{display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.4fr) auto;gap:8px;align-items:start}
+  .stat-edit-row input,.stat-edit-row textarea{width:100%;padding:9px 11px;border-radius:8px;font-size:13.5px;background:var(--surface-2);border:1px solid var(--line);outline:none;transition:.16s var(--ease)}
+  .stat-edit-row input:focus,.stat-edit-row textarea:focus{border-color:var(--gold-soft);background:var(--surface)}
+  .stat-edit-row textarea.val{font-family:var(--body);font-size:13.5px;line-height:1.5;resize:none;min-height:38px;overflow:hidden}
+  .stat-edit-row .lbl{font-weight:500}
+  .row-ctrls{display:flex;gap:3px;align-items:center;padding-top:2px}
+  .rbtn{width:30px;height:36px;border-radius:7px;display:grid;place-items:center;color:var(--text-faint);background:var(--surface-2);border:1px solid var(--line);transition:.14s var(--ease)}
   .rbtn:hover{color:var(--text);background:var(--surface-3)}
-  .rbtn.eye.off{color:var(--text-faint)}
   .rbtn.eye.on{color:var(--gold);border-color:var(--gold-deep);background:rgba(217,178,106,.08)}
   .rbtn.del:hover{color:#f0a39c;border-color:var(--danger-soft)}
   .move-col{display:flex;flex-direction:column}
-  .move-col .rbtn{height:17px;width:24px}
-  .add-stat{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;margin-top:4px;padding:8px 13px;border-radius:9px;font-size:13px;color:var(--gold);border:1px dashed var(--gold-deep);background:rgba(217,178,106,.05)}
+  .move-col .rbtn{height:18px;width:24px}
+  .add-stat{display:inline-flex;align-items:center;gap:7px;align-self:flex-start;margin-top:2px;padding:8px 13px;border-radius:9px;font-size:13px;color:var(--gold);border:1px dashed var(--gold-deep);background:rgba(217,178,106,.05)}
   .add-stat:hover{background:rgba(217,178,106,.1)}
   .editor-actions{display:flex;gap:10px;margin-top:8px;padding-top:18px;border-top:1px solid var(--line)}
   .preview-tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
   .view-as{display:flex;gap:2px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:2px}
   .view-as button{font-size:11px;padding:4px 9px;border-radius:6px;color:var(--text-faint);text-transform:none;letter-spacing:0}
   .view-as button.active{background:var(--surface-3);color:var(--text)}
+  .catmgr{max-width:560px}
+  .catmgr-head{padding:22px clamp(20px,4vw,28px) 16px;border-bottom:1px solid var(--line)}
+  .catmgr-head h2{font-family:var(--display);font-weight:500;font-size:22px;margin:0;display:flex;align-items:center;gap:10px}
+  .catmgr-head h2 .ic{color:var(--gold)}
+  .catmgr-head p{color:var(--text-faint);font-size:12.5px;margin:5px 0 0}
+  .catmgr-body{padding:18px clamp(20px,4vw,28px) 24px}
+  .cat-rows{display:flex;flex-direction:column;gap:9px}
+  .cat-row{display:grid;grid-template-columns:auto auto auto 1fr auto;gap:9px;align-items:center}
+  .cat-move{display:flex;flex-direction:column}
+  .cat-move .rbtn{height:17px;width:22px}
+  .cat-iconbtn{width:40px;height:40px;border-radius:9px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line);color:var(--text-dim)}
+  .cat-iconbtn:hover{border-color:var(--gold-deep);color:var(--gold)}
+  .cat-color{width:40px;height:40px;border-radius:9px;border:1px solid var(--line);background:var(--surface-2);padding:3px;cursor:pointer}
+  .cat-color::-webkit-color-swatch-wrapper{padding:0}
+  .cat-color::-webkit-color-swatch{border:none;border-radius:6px}
+  .cat-color::-moz-color-swatch{border:none;border-radius:6px}
+  .cat-name-in{width:100%;padding:10px 12px;border-radius:9px;font-size:14px;background:var(--surface-2);border:1px solid var(--line);outline:none}
+  .cat-name-in:focus{border-color:var(--gold-soft);background:var(--surface)}
+  .cat-del{width:40px;height:40px;border-radius:9px;display:grid;place-items:center;color:var(--text-faint);background:var(--surface-2);border:1px solid var(--line)}
+  .cat-del:hover{color:#f0a39c;border-color:var(--danger-soft)}
+  .catmgr-actions{display:flex;gap:10px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+  .icon-picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(48px,1fr));gap:9px;margin-top:6px}
+  .icon-opt{aspect-ratio:1;border-radius:10px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line);color:var(--text-dim);transition:.14s var(--ease)}
+  .icon-opt:hover{color:var(--gold);border-color:var(--gold-deep);background:rgba(217,178,106,.08)}
+  .picker-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+  .picker-back{display:inline-flex;align-items:center;gap:7px;color:var(--text-dim);font-size:13.5px;padding:6px 4px;border-radius:7px}
+  .picker-back:hover{color:var(--gold)}
   .login{max-width:400px}
   .login-body{padding:30px clamp(22px,5vw,32px) 30px;text-align:center}
   .login-sigil{width:54px;height:54px;border-radius:14px;margin:0 auto 18px;display:grid;place-items:center;background:linear-gradient(150deg,#2a2438,#191525);border:1px solid var(--gold-deep);color:var(--gold);box-shadow:inset 0 0 16px rgba(217,178,106,.2)}
@@ -209,11 +282,10 @@
   #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
   #toast .ic{color:var(--gold);flex-shrink:0}
   @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.05ms!important}}
-  @media(max-width:560px){.tabs{order:3;width:100%;margin-left:0}.tab{flex:1;justify-content:center}.brand-sub{display:none}}
+  @media(max-width:560px){.tabs{order:3;width:100%;margin-left:0}.tab{flex:1;justify-content:center}.brand-sub{display:none}.stat-edit-row{grid-template-columns:1fr auto}.stat-edit-row .lbl{grid-column:1/-1}.cat-row{grid-template-columns:auto auto auto 1fr}.cat-del{grid-column:2/-1;width:auto}}
 </style>
 </head>
 <body>
-
 <header>
   <div class="brand" id="brandBtn">
     <div class="sigil" id="brandSigil"></div>
@@ -235,23 +307,24 @@
     <div class="menu" id="settingsMenu"></div>
   </div>
 </header>
-
 <main>
   <section id="searchView">
     <div class="search-stage centered" id="searchStage">
+      <div class="hero" id="heroBanner"></div>
       <h1 class="invocation">What knowledge do you seek?</h1>
-      <p class="invocation-sub">Search the archive by name, trait, or description. Every entry the keeper has set down lives here.</p>
+      <p class="invocation-sub">Search the archive by name, trait, tag, or description. Every entry the keeper has set down lives here.</p>
       <div class="search-wrap">
         <div class="search-box">
           <span id="searchIcon"></span>
-          <input id="searchInput" type="text" placeholder="Search the archive…" autocomplete="off" spellcheck="false" />
+          <input id="searchInput" type="text" placeholder="Search the archive...  (try #tag)" autocomplete="off" spellcheck="false" />
           <button class="search-clear" id="searchClear" aria-label="Clear"></button>
         </div>
       </div>
       <div class="quicklinks" id="quicklinks"></div>
+      <div class="tagbar" id="tagbar"></div>
     </div>
     <div id="searchResultsArea" style="display:none">
-      <div class="results-meta"><h2 id="resultsTitle">Results</h2><span class="count" id="resultsCount"></span></div>
+      <div class="results-meta"><h2 id="resultsTitle">Results</h2><span class="count" id="resultsCount"></span><div class="active-filters" id="activeFilters"></div></div>
       <div class="grid" id="searchGrid"></div>
     </div>
   </section>
@@ -267,24 +340,44 @@
     </div>
   </section>
 </main>
-
-<div class="overlay" id="detailOverlay"><div class="sheet detail" id="detailSheet"><button class="sheet-close" id="detailClose" aria-label="Close"></button><div id="detailContent"></div></div></div>
-
-<div class="overlay" id="editorOverlay">
-  <div class="sheet editor">
-    <button class="sheet-close" id="editorClose" aria-label="Close"></button>
-    <div class="editor-head"><h2 id="editorTitle"></h2><p>Set what players can see. Hidden stats and hidden entries stay invisible until you reveal them.</p></div>
-    <div class="editor-grid"><div class="editor-form" id="editorForm"></div><div class="editor-preview" id="editorPreview"></div></div>
-  </div>
-</div>
-
+<div class="overlay" id="detailOverlay"><div class="overlay-art" id="detailArt"></div><div class="sheet detail" id="detailSheet"><button class="sheet-close" id="detailClose" aria-label="Close"></button><div id="detailContent"></div></div></div>
+<div class="overlay" id="editorOverlay"><div class="sheet editor"><button class="sheet-close" id="editorClose" aria-label="Close"></button><div class="editor-head"><h2 id="editorTitle"></h2><p>Set what players can see. Hidden fields and hidden entries stay invisible until you reveal them.</p></div><div class="editor-grid"><div class="editor-form" id="editorForm"></div><div class="editor-preview" id="editorPreview"></div></div></div></div>
+<div class="overlay" id="catOverlay"><div class="sheet catmgr"><button class="sheet-close" id="catClose" aria-label="Close"></button><div id="catMgrBody"></div></div></div>
 <div class="overlay" id="loginOverlay"><div class="sheet login"><button class="sheet-close" id="loginClose" aria-label="Close"></button><div class="login-body" id="loginBody"></div></div></div>
-
 <div id="toast"></div>
-
 <script>
-/* ============ ICONS ============ */
-const I = {
+/* ===== ICON LIBRARY (single-path glyphs, pickable for categories) ===== */
+const ICON_LIB = {
+  gem:'M6 3.5h12l3 5-9 12.5L3 8.5zM3 8.5h18M9 3.5 6 8.5l6 12.5 6-12.5-3-5',
+  person:'M12 8m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0M4.5 20.5c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5',
+  pin:'M12 21s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12zM12 9m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0-5 0',
+  paw:'M6 11m-1.9 0a1.9 1.9 0 1 0 3.8 0a1.9 1.9 0 1 0-3.8 0M9.5 6.8m-1.9 0a1.9 1.9 0 1 0 3.8 0a1.9 1.9 0 1 0-3.8 0M14.5 6.8m-1.9 0a1.9 1.9 0 1 0 3.8 0a1.9 1.9 0 1 0-3.8 0M18 11m-1.9 0a1.9 1.9 0 1 0 3.8 0a1.9 1.9 0 1 0-3.8 0M7.5 16.5c0-2.8 2.2-4.5 4.5-4.5s4.5 1.7 4.5 4.5-2 3.2-4.5 3.2-4.5-.4-4.5-3.2z',
+  banner:'M6 3.5v17M6 4.5h11l-2.6 4L17 12.5H6',
+  book:'M4 5a2 2 0 0 1 2-2h6v16H6a2 2 0 0 0-2 2zM20 5a2 2 0 0 0-2-2h-6v16h6a2 2 0 0 1 2 2z',
+  compass:'M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0-18 0M15.5 8.5l-2.2 4.8L8.5 15.5l2.2-4.8z',
+  scroll:'M7 4h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4zM9.5 8.5h5M9.5 12h5M9.5 15.5h3',
+  sword:'M14.5 3.5h6v6M20 4 10 14M4 20l2.5-.8M4 20l.8-2.5M4 20 3 21M6.5 12.5l5 5',
+  crown:'M4 8l3 9h10l3-9-5 4-3-6-3 6zM7 20h10',
+  skull:'M12 3a8 8 0 0 0-8 8c0 2.5 1.2 4 2.5 5v3a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3c1.3-1 2.5-2.5 2.5-5a8 8 0 0 0-8-8zM9 11m-1.3 0a1.3 1.3 0 1 0 2.6 0a1.3 1.3 0 1 0-2.6 0M15 11m-1.3 0a1.3 1.3 0 1 0 2.6 0a1.3 1.3 0 1 0-2.6 0',
+  flame:'M12 3c1 3-2 4-2 7a2 2 0 0 0 4 0c0-1-.5-1.5-.5-2 2 1 3.5 3 3.5 6a5 5 0 0 1-10 0c0-4 3.5-5.5 5-11z',
+  star:'M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z',
+  shield:'M12 3 5 5.5V11c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V5.5z',
+  key:'M8 15m-4 0a4 4 0 1 0 8 0a4 4 0 1 0-8 0M11 12l9-9M18 5l2 2M15 8l2 2',
+  mask:'M4 6c0-1 8-2 8-2s8 1 8 2c0 2 0 8-4 10-2 1-4 1-4 1s-2 0-4-1C4 14 4 8 4 6zM8.5 10h2M13.5 10h2',
+  mountain:'M3 19h18L14 7l-4 6-2-2z',
+  potion:'M10 3h4M11 3.5v3.5l-3.5 8a3 3 0 0 0 2.8 4.5h3.4A3 3 0 0 0 16.5 15L13 7V3.5M8 15h8',
+  coin:'M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0-18 0M12 7v10M14.5 9.5c0-1-1-1.7-2.5-1.7s-2.5.7-2.5 1.7 1 1.3 2.5 1.3 2.5.5 2.5 1.5-1 1.7-2.5 1.7-2.5-.7-2.5-1.7',
+  ship:'M4 15h16l-2 4H6zM12 3v8M8 7l4-2 4 2M6 11h12v4H6z',
+  moon:'M20 14a8 8 0 1 1-8-11 6 6 0 0 0 8 11z',
+  tree:'M12 3c-3 0-5 2.5-5 5 0 2 1 3.3 2 4-1.5.7-3 2-3 4.5a5.5 5.5 0 0 0 12 0c0-2.5-1.5-3.8-3-4.5 1-.7 2-2 2-4 0-2.5-2-5-5-5zM12 15v6',
+  ring:'M12 13m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0M9.5 5.5 12 3l2.5 2.5-2.5 3z',
+  bolt:'M13 3 5 13h5l-1 8 8-10h-5z',
+};
+const ICON_NAMES = Object.keys(ICON_LIB);
+function icon(name,cls){return '<svg class="ic '+(cls||'')+'" viewBox="0 0 24 24"><path d="'+(ICON_LIB[name]||ICON_LIB.scroll)+'"/></svg>';}
+
+/* ===== small UI icons (multi-shape) ===== */
+const UI = {
   search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/>',
   lock:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
   key:'<circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M18 5l2 2M15 8l2 2"/>',
@@ -294,160 +387,200 @@ const I = {
   trash:'<path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 12.5a1 1 0 0 0 1 .9h8a1 1 0 0 0 1-.9L19 7"/>',
   eye:'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
   eyeoff:'<path d="M3 3l18 18"/><path d="M10.6 6.2A10.4 10.4 0 0 1 12 6c6.4 0 10 6 10 6a17.6 17.6 0 0 1-3.1 3.7M6.4 7.9A17.6 17.6 0 0 0 2 12s3.6 6 10 6a10.4 10.4 0 0 0 3.2-.5"/><path d="M9.6 10.6a3 3 0 0 0 4 4"/>',
-  up:'<path d="m6 14 6-6 6 6"/>',
-  down:'<path d="m6 10 6 6 6-6"/>',
+  up:'<path d="m6 14 6-6 6 6"/>', down:'<path d="m6 10 6 6 6-6"/>',
   gear:'<circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.5M12 18.5V21M21 12h-2.5M5.5 12H3M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8M18.4 18.4l-1.8-1.8M7.4 7.4 5.6 5.6"/>',
   image:'<rect x="3" y="4.5" width="18" height="15" rx="2"/><circle cx="8.5" cy="9.5" r="1.7"/><path d="m4 18 5-4.5 3.5 3 3-2.5 4.5 4"/>',
   back:'<path d="M15 6l-6 6 6 6"/>',
   scroll:'<path d="M7 4h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4z"/><path d="M9.5 8.5h5M9.5 12h5M9.5 15.5h3"/>',
   compass:'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.2 4.8L8.5 15.5l2.2-4.8z"/>',
   check:'<path d="M4 12.5 9 17.5 20 6.5"/>',
-  spark:'<path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/>',
+  crop:'<path d="M6 2v14a1 1 0 0 0 1 1h14M2 6h14a1 1 0 0 1 1 1v14"/>',
+  expand:'<path d="M3 8V4a1 1 0 0 1 1-1h4M21 8V4a1 1 0 0 0-1-1h-4M3 16v4a1 1 0 0 0 1 1h4M21 16v4a1 1 0 0 1-1 1h-4"/>',
+  layers:'<path d="M12 3 3 8l9 5 9-5z"/><path d="m3 13 9 5 9-5"/>',
   download:'<path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/>',
   upload:'<path d="M12 20V9m0 0 4 4m-4-4-4 4M5 5h14"/>',
 };
-function svg(p,cls){return '<svg class="ic '+(cls||'')+'" viewBox="0 0 24 24">'+p+'</svg>';}
+function s(p,cls){return '<svg class="ic '+(cls||'')+'" viewBox="0 0 24 24">'+p+'</svg>';}
 
-/* ============ CATEGORIES ============ */
-const CATS = [
-  {key:'items',     label:'Items',     full:'Items & Artifacts', hue:'#CC8B5C', icon:'<path d="M6 3.5h12l3 5-9 12.5L3 8.5z"/><path d="M3 8.5h18"/><path d="M9 3.5 6 8.5l6 12.5 6-12.5-3-5"/>'},
-  {key:'npcs',      label:'NPCs',      full:'Characters',        hue:'#C97A8E', icon:'<circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5"/>'},
-  {key:'locations', label:'Locations', full:'Places',            hue:'#5FAE9E', icon:'<path d="M12 21s7-6.4 7-12a7 7 0 1 0-14 0c0 5.6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>'},
-  {key:'bestiary',  label:'Creatures', full:'Bestiary',          hue:'#84A65C', icon:'<circle cx="6" cy="11" r="1.9"/><circle cx="9.5" cy="6.8" r="1.9"/><circle cx="14.5" cy="6.8" r="1.9"/><circle cx="18" cy="11" r="1.9"/><path d="M7.5 16.5c0-2.8 2.2-4.5 4.5-4.5s4.5 1.7 4.5 4.5-2 3.2-4.5 3.2-4.5-.4-4.5-3.2z"/>'},
-  {key:'factions',  label:'Factions',  full:'Factions',          hue:'#C25B5B', icon:'<path d="M6 3.5v17"/><path d="M6 4.5h11l-2.6 4L17 12.5H6"/>'},
-  {key:'lore',      label:'Lore',      full:'Lore & History',    hue:'#9B7FC9', icon:'<path d="M4 5a2 2 0 0 1 2-2h6v16H6a2 2 0 0 0-2 2z"/><path d="M20 5a2 2 0 0 0-2-2h-6v16h6a2 2 0 0 1 2 2z"/>'},
-  {key:'quests',    label:'Quests',    full:'Quests',            hue:'#5C8FD6', icon:'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2.2 4.8L8.5 15.5l2.2-4.8z"/>'},
-  {key:'sessions',  label:'Sessions',  full:'Session Log',       hue:'#8A93A8', icon:'<path d="M7 4h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V4z"/><path d="M9.5 8.5h5M9.5 12h5M9.5 15.5h3"/>'},
-];
-const catMap = Object.fromEntries(CATS.map(c=>[c.key,c]));
-function catIconSvg(key,cls){const c=catMap[key]||CATS[0];return '<svg class="ic '+(cls||'')+'" viewBox="0 0 24 24">'+c.icon+'</svg>';}
-
-/* ============ STATE ============ */
-let DATA = { meta:{title:'The Unwritten Codex',subtitle:'Archive of a living world'}, cards:[] };
+/* ===== STATE ===== */
+let DATA = { meta:{title:'The Unwritten Codex',subtitle:'Archive of a living world',heroImage:''}, cards:[] };
+let CATS = [];
+let catMap = {};
 let isDM=false, view='search', query='', activeCat=null, draft=null, previewMode='player';
+const FALLBACK_CAT = {key:'_none',label:'Uncategorized',hue:'#6C6680',icon:'scroll'};
+const DEFAULT_CATS = [
+  {key:'items',label:'Items',hue:'#CC8B5C',icon:'gem'},
+  {key:'npcs',label:'NPCs',hue:'#C97A8E',icon:'person'},
+  {key:'locations',label:'Locations',hue:'#5FAE9E',icon:'pin'},
+  {key:'bestiary',label:'Creatures',hue:'#84A65C',icon:'paw'},
+  {key:'factions',label:'Factions',hue:'#C25B5B',icon:'banner'},
+  {key:'lore',label:'Lore',hue:'#9B7FC9',icon:'book'},
+  {key:'quests',label:'Quests',hue:'#5C8FD6',icon:'compass'},
+  {key:'sessions',label:'Sessions',hue:'#8A93A8',icon:'scroll'},
+];
+function rebuildCatMap(){ catMap = Object.fromEntries(CATS.map(c=>[c.key,c])); }
+function catObj(key){ return catMap[key] || FALLBACK_CAT; }
+function knownCatKeys(c){ const ks=(c.categories||[]).filter(k=>catMap[k]); return ks.length?ks:(catMap[c.category]?[c.category]:[]); }
+function catsOf(c){ const ks=knownCatKeys(c); return ks.length?ks.map(catObj):[FALLBACK_CAT]; }
+function primaryCat(c){ return catsOf(c)[0]; }
 
-/* ============ API LAYER ============ */
-async function api(path,{method='GET',body}={}){
-  const res = await fetch(path,{
-    method,
-    headers: body ? {'Content-Type':'application/json'} : undefined,
-    body: body ? JSON.stringify(body) : undefined,
-    credentials:'same-origin',
-  });
+/* ===== ESCAPING ===== */
+function esc(str){ return String(str==null?'':str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escAttr(str){ return String(str==null?'':str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function cssUrl(u){ return "url('"+String(u).replace(/'/g,'%27').replace(/"/g,'%22')+"')"; }
+
+/* ===== API ===== */
+async function api(path,opts){
+  opts=opts||{}; const method=opts.method||'GET'; const body=opts.body;
+  const res=await fetch(path,{ method, headers: body?{'Content-Type':'application/json'}:undefined, body: body?JSON.stringify(body):undefined, credentials:'same-origin' });
   let data=null; try{ data=await res.json(); }catch(e){}
-  if(!res.ok) throw new Error((data&&data.error) || ('Request failed ('+res.status+')'));
+  if(!res.ok) throw new Error((data&&data.error)||('Request failed ('+res.status+')'));
   return data;
 }
+function normalizeCard(c){
+  c.categories = Array.isArray(c.categories)&&c.categories.length ? c.categories : (c.category?[c.category]:[]);
+  c.tags = Array.isArray(c.tags) ? c.tags : [];
+  c.imageFit = (c.image_fit||c.imageFit)==='contain'?'contain':'cover';
+  c.imagePos = c.image_pos||c.imagePos||'50% 50%';
+  if(!Array.isArray(c.stats)) c.stats=[];
+  return c;
+}
 async function refreshData(){
-  const resp = await api('/api/cards');
-  DATA = { meta: resp.meta || {title:'The Unwritten Codex',subtitle:'Archive of a living world'}, cards: resp.cards || [] };
+  const resp=await api('/api/cards');
+  CATS = Array.isArray(resp.categories)&&resp.categories.length ? resp.categories.slice() : DEFAULT_CATS.slice();
+  rebuildCatMap();
+  DATA = { meta: resp.meta||DATA.meta, cards: (resp.cards||[]).map(normalizeCard) };
   isDM = !!resp.dm;
-  applyDMUI(); renderBrand(); refreshAll();
+  applyDMUI(); renderBrand(); renderHero(); refreshAll();
 }
 function applyDMUI(){
-  document.getElementById('guestTools').style.display = isDM ? 'none':'block';
-  document.getElementById('dmTools').style.display    = isDM ? 'flex':'none';
+  document.getElementById('guestTools').style.display = isDM?'none':'block';
+  document.getElementById('dmTools').style.display = isDM?'flex':'none';
 }
 
-/* ============ VISIBILITY HELPERS ============ */
+/* ===== VISIBILITY ===== */
 const visibleCards = ()=> DATA.cards.filter(c=> isDM || c.visible);
-const visibleStats = (c, asPlayer)=> (c.stats||[]).filter(s=> (isDM && !asPlayer) ? true : s.visible);
+const visibleStats = (c,asPlayer)=> (c.stats||[]).filter(st=> (isDM && !asPlayer) ? true : st.visible);
 
-/* ============ TOAST ============ */
+/* ===== TOAST ===== */
 let toastT;
-function toast(msg,icon){
-  const el=document.getElementById('toast');
-  el.innerHTML=svg(icon||I.spark,'sm')+'<span>'+esc(msg)+'</span>';
-  el.classList.add('show'); clearTimeout(toastT);
-  toastT=setTimeout(()=>el.classList.remove('show'),2800);
+function toast(msg,ic){ const el=document.getElementById('toast'); el.innerHTML=s(ic||UI.check,'sm')+'<span>'+esc(msg)+'</span>'; el.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'),2800); }
+
+/* ===== IMAGE MARKUP ===== */
+function imgOnErr(){ return "this.style.display='none';var p=this.parentElement.querySelector('.ph');if(p)p.style.display='grid';var b=this.parentElement.querySelector('.img-blurbg');if(b)b.style.display='none'"; }
+function imageMarkup(c){
+  const ph='<div class="ph"'+(c.image?' style="display:none"':'')+'>'+icon(primaryCat(c).icon)+'</div>';
+  if(!c.image) return ph;
+  const fit=c.imageFit||'cover', pos=c.imagePos||'50% 50%';
+  const bg = fit==='contain' ? '<div class="img-blurbg" style="background-image:'+cssUrl(c.image)+'"></div>' : '';
+  const img='<img class="img-main" src="'+escAttr(c.image)+'" style="object-fit:'+fit+';object-position:'+pos+'" onerror="'+imgOnErr()+'">';
+  return bg+img+ph;
 }
 
-/* ============ STATIC CHROME ============ */
+/* ===== CHROME ===== */
 function renderStaticChrome(){
-  document.getElementById('brandSigil').innerHTML=svg(I.scroll,'lg');
-  document.getElementById('searchIcon').innerHTML=svg(I.search);
-  document.getElementById('searchClear').innerHTML=svg(I.x,'sm');
-  document.getElementById('tabSearch').innerHTML=svg(I.search,'sm')+'<span>Search</span>';
-  document.getElementById('tabExplore').innerHTML=svg(I.compass,'sm')+'<span>Explore</span>';
-  document.getElementById('dmLoginBtn').innerHTML=svg(I.lock,'sm')+'<span>Keeper login</span>';
-  document.getElementById('newEntryBtn').innerHTML=svg(I.plus,'sm')+'<span>New entry</span>';
-  document.getElementById('gearBtn').innerHTML=svg(I.gear,'sm');
-  document.getElementById('dmBadge').innerHTML=svg(I.key,'sm')+'<span>Keeper</span>';
-  document.getElementById('exploreBack').innerHTML=svg(I.back,'sm')+'<span>All categories</span>';
-  document.getElementById('detailClose').innerHTML=svg(I.x);
-  document.getElementById('editorClose').innerHTML=svg(I.x);
-  document.getElementById('loginClose').innerHTML=svg(I.x);
+  document.getElementById('brandSigil').innerHTML=s(UI.scroll,'lg');
+  document.getElementById('searchIcon').innerHTML=s(UI.search);
+  document.getElementById('searchClear').innerHTML=s(UI.x,'sm');
+  document.getElementById('tabSearch').innerHTML=s(UI.search,'sm')+'<span>Search</span>';
+  document.getElementById('tabExplore').innerHTML=s(UI.compass,'sm')+'<span>Explore</span>';
+  document.getElementById('dmLoginBtn').innerHTML=s(UI.lock,'sm')+'<span>Keeper login</span>';
+  document.getElementById('newEntryBtn').innerHTML=s(UI.plus,'sm')+'<span>New entry</span>';
+  document.getElementById('gearBtn').innerHTML=s(UI.gear,'sm');
+  document.getElementById('dmBadge').innerHTML=s(UI.key,'sm')+'<span>Keeper</span>';
+  document.getElementById('exploreBack').innerHTML=s(UI.back,'sm')+'<span>All categories</span>';
+  document.getElementById('detailClose').innerHTML=s(UI.x);
+  document.getElementById('editorClose').innerHTML=s(UI.x);
+  document.getElementById('catClose').innerHTML=s(UI.x);
+  document.getElementById('loginClose').innerHTML=s(UI.x);
 }
 function renderBrand(){
   document.getElementById('brandTitle').textContent=DATA.meta.title||'The Unwritten Codex';
   document.getElementById('brandSub').textContent=DATA.meta.subtitle||'';
   document.title=DATA.meta.title||'The Unwritten Codex';
 }
+function renderHero(){
+  const h=document.getElementById('heroBanner'); const url=DATA.meta.heroImage;
+  if(url){ h.classList.add('has-art'); h.innerHTML='<img src="'+escAttr(url)+'" alt="" onerror="this.closest(\'.hero\').classList.remove(\'has-art\');this.closest(\'.hero\').style.display=\'none\'"><div class="hero-veil"></div><div class="hero-frame"></div>'; }
+  else { h.classList.remove('has-art'); h.innerHTML=''; }
+}
 
-/* ============ QUICKLINKS ============ */
+/* ===== QUICKLINKS + TAGS ===== */
 function renderQuicklinks(){
   const wrap=document.getElementById('quicklinks');
   wrap.innerHTML=CATS.map(c=>{
-    const n=visibleCards().filter(x=>x.category===c.key).length;
+    const n=visibleCards().filter(x=>knownCatKeys(x).includes(c.key)).length;
     if(!n) return '';
-    return '<button class="quick" data-cat="'+c.key+'"><span class="dot" style="background:'+c.hue+'"></span>'+c.label+' <span style="color:var(--text-faint)">'+n+'</span></button>';
+    return '<button class="quick" data-cat="'+escAttr(c.key)+'"><span class="dot" style="background:'+c.hue+'"></span>'+esc(c.label)+' <span style="color:var(--text-faint)">'+n+'</span></button>';
   }).join('');
   wrap.querySelectorAll('.quick').forEach(b=>b.onclick=()=>{ setView('explore'); openCategory(b.dataset.cat); });
 }
+function allTags(){
+  const set=new Map();
+  visibleCards().forEach(c=>(c.tags||[]).forEach(t=>{ const k=String(t).toLowerCase(); if(!set.has(k)) set.set(k,String(t)); }));
+  return [...set.values()].sort((a,b)=>a.localeCompare(b));
+}
+function renderTags(){
+  const bar=document.getElementById('tagbar'); const tags=allTags();
+  if(!tags.length){ bar.innerHTML=''; return; }
+  bar.innerHTML='<span class="tag-lead">Tags</span>'+tags.slice(0,24).map(t=>'<button class="tag-pill" data-tag="'+escAttr(t)+'">#'+esc(t)+'</button>').join('');
+  bar.querySelectorAll('.tag-pill').forEach(b=>b.onclick=()=>{ query='#'+b.dataset.tag; document.getElementById('searchInput').value=query; runSearch(); document.getElementById('searchInput').focus(); });
+}
 
-/* ============ CARD GRID ============ */
+/* ===== CARDS ===== */
+function categoryChipsHTML(c,max){
+  const cats=catsOf(c); const show=cats.slice(0,max); const extra=cats.length-show.length;
+  return '<div class="card-cats">'+show.map(cat=>'<span class="card-cat"><span class="dot" style="background:'+cat.hue+'"></span>'+esc(cat.label)+'</span>').join('')+(extra>0?'<span class="card-cat more">+'+extra+'</span>':'')+'</div>';
+}
 function cardEl(c){
-  const cat=catMap[c.category]||CATS[0];
   const teaser=(c.description||'').slice(0,120);
-  const thumb = c.image
-    ? '<img src="'+escAttr(c.image)+'" alt="" onerror="this.style.display=\'none\';this.parentElement.querySelector(\'.ph\').style.display=\'grid\'"><div class="ph" style="display:none">'+catIconSvg(c.category)+'</div>'
-    : '<div class="ph">'+catIconSvg(c.category)+'</div>';
-  const flag = (isDM && !c.visible) ? '<span class="hidden-flag">'+svg(I.eyeoff,'sm')+'Hidden</span>' : '';
+  const flag=(isDM&&!c.visible)?'<span class="hidden-flag">'+s(UI.eyeoff,'sm')+'Hidden</span>':'';
+  const tags=(c.tags||[]).slice(0,3);
+  const tagHtml=tags.length?'<div class="card-tags">'+tags.map(t=>'<span class="t">#'+esc(t)+'</span>').join('')+'</div>':'';
   const b=document.createElement('button');
   b.className='card'+((isDM&&!c.visible)?' is-hidden':'');
-  b.innerHTML=
-    '<div class="card-thumb">'+flag+thumb+'</div>'+
-    '<div class="card-body">'+
-      '<span class="card-cat"><span class="dot" style="background:'+cat.hue+'"></span>'+cat.label+'</span>'+
-      '<span class="card-name">'+esc(c.name||'Untitled')+'</span>'+
-      (teaser?'<span class="card-teaser">'+esc(teaser)+(c.description.length>120?'…':'')+'</span>':'')+
-    '</div>';
+  b.innerHTML='<div class="card-thumb">'+flag+imageMarkup(c)+'</div><div class="card-body">'+categoryChipsHTML(c,2)+'<span class="card-name">'+esc(c.name||'Untitled')+'</span>'+(teaser?'<span class="card-teaser">'+esc(teaser)+(c.description.length>120?'…':'')+'</span>':'')+tagHtml+'</div>';
   b.onclick=()=>openDetail(c.id);
   return b;
 }
-function renderGrid(container,cards,emptyMsg){
+function renderGrid(container,cards,empty){
   container.innerHTML='';
-  if(!cards.length){ container.innerHTML='<div class="empty">'+svg(I.search,'lg')+'<strong>'+emptyMsg.t+'</strong>'+emptyMsg.s+'</div>'; return; }
+  if(!cards.length){ container.innerHTML='<div class="empty">'+s(UI.search,'lg')+'<strong>'+empty.t+'</strong>'+empty.s+'</div>'; return; }
   cards.forEach(c=>container.appendChild(cardEl(c)));
 }
 
-/* ============ SEARCH ============ */
+/* ===== SEARCH ===== */
 function runSearch(){
-  const stage=document.getElementById('searchStage');
-  const area=document.getElementById('searchResultsArea');
-  const q=query.trim().toLowerCase();
-  document.getElementById('searchClear').classList.toggle('show',!!q);
-  if(!q){ stage.classList.add('centered'); area.style.display='none'; return; }
+  const stage=document.getElementById('searchStage'), area=document.getElementById('searchResultsArea');
+  const raw=query.trim();
+  document.getElementById('searchClear').classList.toggle('show',!!raw);
+  if(!raw){ stage.classList.add('centered'); area.style.display='none'; return; }
   stage.classList.remove('centered'); area.style.display='block';
+  const tokens=raw.toLowerCase().split(/\s+/).filter(Boolean);
+  const tagFilters=tokens.filter(t=>t.startsWith('#')).map(t=>t.slice(1)).filter(Boolean);
+  const text=tokens.filter(t=>!t.startsWith('#')).join(' ').trim();
   const matches=visibleCards().filter(c=>{
-    const hay=[c.name,c.description,catMap[c.category]?.label,catMap[c.category]?.full]
-      .concat(visibleStats(c).map(s=>s.label+' '+s.value)).join(' ').toLowerCase();
-    return hay.includes(q);
+    const cardTags=(c.tags||[]).map(t=>String(t).toLowerCase());
+    for(const tf of tagFilters){ if(!cardTags.some(t=>t===tf||t.includes(tf))) return false; }
+    if(!text) return true;
+    const catLabels=knownCatKeys(c).map(k=>catObj(k).label).join(' ');
+    const hay=[c.name,c.description,catLabels,cardTags.join(' ')].concat(visibleStats(c).map(st=>st.label+' '+st.value)).join(' ').toLowerCase();
+    return hay.includes(text);
   });
   document.getElementById('resultsTitle').textContent='Results';
   document.getElementById('resultsCount').textContent=matches.length+(matches.length===1?' entry':' entries');
-  renderGrid(document.getElementById('searchGrid'),matches,{t:'Nothing found',s:'No entry matches “'+esc(query.trim())+'”. Try another term.'});
+  const af=document.getElementById('activeFilters');
+  af.innerHTML=tagFilters.map(t=>'<span class="filter-chip">#'+esc(t)+'<button data-t="'+escAttr(t)+'" aria-label="Remove">'+s(UI.x,'sm')+'</button></span>').join('');
+  af.querySelectorAll('.filter-chip button').forEach(btn=>btn.onclick=()=>{ const t=btn.dataset.t; query=query.split(/\s+/).filter(tok=>tok.toLowerCase()!=='#'+t).join(' ').trim(); document.getElementById('searchInput').value=query; runSearch(); });
+  renderGrid(document.getElementById('searchGrid'),matches,{t:'Nothing found',s:'No entry matches that search. Try another term or tag.'});
 }
 
-/* ============ EXPLORE ============ */
+/* ===== EXPLORE ===== */
 function renderExplore(){
   const grid=document.getElementById('catGrid');
   grid.innerHTML=CATS.map(c=>{
-    const n=visibleCards().filter(x=>x.category===c.key).length;
-    return '<button class="cat-tile" data-cat="'+c.key+'" style="--tilehue:'+c.hue+'">'+
-      '<div class="cat-icon" style="color:'+c.hue+'">'+catIconSvg(c.key,'lg')+'</div>'+
-      '<div><div class="cat-name">'+c.full+'</div><div class="cat-count">'+n+(n===1?' entry':' entries')+'</div></div>'+
-    '</button>';
+    const n=visibleCards().filter(x=>knownCatKeys(x).includes(c.key)).length;
+    return '<button class="cat-tile" data-cat="'+escAttr(c.key)+'" style="--tilehue:'+c.hue+'"><div class="cat-icon" style="color:'+c.hue+'">'+icon(c.icon,'lg')+'</div><div><div class="cat-name">'+esc(c.label)+'</div><div class="cat-count">'+n+(n===1?' entry':' entries')+'</div></div></button>';
   }).join('');
   grid.querySelectorAll('.cat-tile').forEach(b=>b.onclick=()=>openCategory(b.dataset.cat));
 }
@@ -455,291 +588,286 @@ function openCategory(key){
   activeCat=key;
   document.getElementById('exploreCats').style.display='none';
   document.getElementById('exploreFiltered').style.display='block';
-  const cat=catMap[key];
-  const cards=visibleCards().filter(c=>c.category===key);
-  document.getElementById('filteredTitle').innerHTML='<span style="display:inline-flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:'+cat.hue+'"></span>'+cat.full+'</span>';
+  const cat=catObj(key);
+  const cards=visibleCards().filter(c=>knownCatKeys(c).includes(key));
+  document.getElementById('filteredTitle').innerHTML='<span style="display:inline-flex;align-items:center;gap:10px"><span style="width:10px;height:10px;border-radius:50%;background:'+cat.hue+'"></span>'+esc(cat.label)+'</span>';
   document.getElementById('filteredCount').textContent=cards.length+(cards.length===1?' entry':' entries');
-  renderGrid(document.getElementById('filteredGrid'),cards,{t:'Empty shelf',s:'No '+cat.label.toLowerCase()+' have been catalogued yet.'});
+  renderGrid(document.getElementById('filteredGrid'),cards,{t:'Empty shelf',s:'No entries in this category yet.'});
   window.scrollTo({top:0,behavior:'smooth'});
 }
-document.getElementById('exploreBack').onclick=()=>{
-  activeCat=null;
-  document.getElementById('exploreFiltered').style.display='none';
-  document.getElementById('exploreCats').style.display='block';
-  renderExplore();
-};
+document.getElementById('exploreBack').onclick=()=>{ activeCat=null; document.getElementById('exploreFiltered').style.display='none'; document.getElementById('exploreCats').style.display='block'; renderExplore(); };
 
-/* ============ DETAIL ============ */
+/* ===== DETAIL ===== */
+function statsHTML(stats,showSecretMark){
+  if(!stats.length) return '';
+  return '<div class="stat-block"><div class="stat-block-label">Details</div>'+stats.map(st=>{
+    const secret=showSecretMark&&!st.visible; const val=st.value||'';
+    const long=val.length>42||/\n/.test(val);
+    if(long){ return '<div class="stat-blockrow'+(secret?' secret':'')+'"><div class="sb-label">'+(secret?s(UI.eyeoff,'sm'):'')+esc(st.label||'—')+'</div><div class="sb-value">'+esc(val||'—')+'</div></div>'; }
+    return '<div class="stat-row'+(secret?' secret':'')+'"><span class="stat-label">'+(secret?s(UI.eyeoff,'sm'):'')+esc(st.label||'—')+'</span><span class="stat-value">'+esc(val||'—')+'</span></div>';
+  }).join('')+'</div>';
+}
 function detailHTML(c,asPlayer){
-  const cat=catMap[c.category]||CATS[0];
-  const hero = c.image
-    ? '<div class="detail-hero"><img src="'+escAttr(c.image)+'" alt="" onerror="this.style.display=\'none\';this.parentElement.querySelector(\'.ph\').style.display=\'grid\'"><div class="ph" style="display:none">'+catIconSvg(c.category)+'</div></div>'
-    : '<div class="detail-hero"><div class="ph">'+catIconSvg(c.category)+'</div></div>';
-  const stats=visibleStats(c,asPlayer);
-  const showSecretMark = isDM && !asPlayer;
-  let statHtml='';
-  if(stats.length){
-    statHtml='<div class="stat-block"><div class="stat-block-label">Details</div>'+
-      stats.map(s=>{ const secret = showSecretMark && !s.visible;
-        return '<div class="stat-row'+(secret?' secret':'')+'">'+
-          '<span class="stat-label">'+(secret?svg(I.eyeoff,'sm'):'')+esc(s.label||'—')+'</span>'+
-          '<span class="stat-value">'+esc(s.value||'—')+'</span></div>'; }).join('')+'</div>';
-  }
-  const hiddenNote = (isDM && !c.visible && !asPlayer) ? '<div class="detail-hidden-note">'+svg(I.eyeoff,'sm')+'This entry is hidden from players</div>' : '';
-  return hero+'<div class="detail-body">'+
-    '<span class="detail-cat"><span class="dot" style="background:'+cat.hue+'"></span>'+cat.full+'</span>'+
-    '<h2 class="detail-name">'+esc(c.name||'Untitled')+'</h2>'+hiddenNote+
-    (c.description?'<div class="detail-desc">'+esc(c.description)+'</div>':'')+statHtml+'</div>';
+  const stats=visibleStats(c,asPlayer); const showSecretMark=isDM&&!asPlayer; const cats=catsOf(c);
+  const catHtml='<div class="detail-cats">'+cats.map(cat=>'<span class="detail-cat"><span class="dot" style="background:'+cat.hue+'"></span>'+esc(cat.label)+'</span>').join('')+'</div>';
+  const tags=(c.tags||[]);
+  const tagHtml=tags.length?'<div class="detail-tags">'+tags.map(t=>'<span class="t" data-tag="'+escAttr(t)+'">#'+esc(t)+'</span>').join('')+'</div>':'';
+  const hiddenNote=(isDM&&!c.visible&&!asPlayer)?'<div class="detail-hidden-note">'+s(UI.eyeoff,'sm')+'This entry is hidden from players</div>':'';
+  return '<div class="detail-hero">'+imageMarkup(c)+'</div><div class="detail-body">'+catHtml+'<h2 class="detail-name">'+esc(c.name||'Untitled')+'</h2>'+tagHtml+hiddenNote+(c.description?'<div class="detail-desc">'+esc(c.description)+'</div>':'')+statsHTML(stats,showSecretMark)+'</div>';
 }
 function openDetail(id){
   const c=DATA.cards.find(x=>x.id===id); if(!c) return;
+  const art=document.getElementById('detailArt');
+  if(c.image){ art.style.backgroundImage=cssUrl(c.image); art.classList.add('show'); } else { art.style.backgroundImage=''; art.classList.remove('show'); }
   let html=detailHTML(c,false);
-  if(isDM){
-    html+='<div class="detail-body" style="padding-top:0"><div class="detail-actions">'+
-      '<button class="btn gold" id="dEdit">'+svg(I.pencil,'sm')+'Edit entry</button>'+
-      '<button class="btn ghost-danger" id="dDel">'+svg(I.trash,'sm')+'Delete</button></div></div>';
-  }
+  if(isDM){ html+='<div class="detail-body" style="padding-top:0"><div class="detail-actions"><button class="btn gold" id="dEdit">'+s(UI.pencil,'sm')+'Edit entry</button><button class="btn ghost-danger" id="dDel">'+s(UI.trash,'sm')+'Delete</button></div></div>'; }
   document.getElementById('detailContent').innerHTML=html;
-  if(isDM){
-    document.getElementById('dEdit').onclick=()=>{ closeOverlay('detailOverlay'); openEditor(id); };
-    document.getElementById('dDel').onclick=()=>deleteCard(id);
-  }
+  document.querySelectorAll('#detailContent .detail-tags .t').forEach(el=>el.onclick=()=>{ closeOverlay('detailOverlay'); setView('search'); query='#'+el.dataset.tag; document.getElementById('searchInput').value=query; runSearch(); });
+  if(isDM){ document.getElementById('dEdit').onclick=()=>{ closeOverlay('detailOverlay'); openEditor(id); }; document.getElementById('dDel').onclick=()=>deleteCard(id); }
   openOverlay('detailOverlay');
 }
 async function deleteCard(id){
   const c=DATA.cards.find(x=>x.id===id);
-  if(!confirm('Delete “'+(c?c.name:'this entry')+'” from the archive? This cannot be undone.')) return;
-  try{
-    await api('/api/delete-card',{method:'POST',body:{id}});
-    closeOverlay('detailOverlay'); await refreshData(); toast('Entry removed',I.trash);
-  }catch(e){ toast(e.message||'Could not delete',I.x); }
+  if(!confirm('Delete "'+(c?c.name:'this entry')+'" from the archive? This cannot be undone.')) return;
+  try{ await api('/api/delete-card',{method:'POST',body:{id}}); closeOverlay('detailOverlay'); await refreshData(); toast('Entry removed',UI.trash); }
+  catch(e){ toast(e.message||'Could not delete',UI.x); }
 }
 
-/* ============ EDITOR ============ */
+/* ===== EDITOR ===== */
 const uid=()=>Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);
-function blankCard(){ return {id:uid(),name:'',category:'items',image:'',visible:true,description:'',stats:[{id:uid(),label:'',value:'',visible:true}]}; }
+function blankCard(){ return {id:uid(),name:'',categories:[CATS[0]?CATS[0].key:'items'],tags:[],image:'',imageFit:'cover',imagePos:'50% 50%',visible:true,description:'',stats:[{id:uid(),label:'',value:'',visible:true}]}; }
+function autoGrow(el){ el.style.height='auto'; el.style.height=(el.scrollHeight)+'px'; }
 function openEditor(id){
-  const existing = id ? DATA.cards.find(x=>x.id===id) : null;
-  draft = existing ? JSON.parse(JSON.stringify(existing)) : blankCard();
+  const existing=id?DATA.cards.find(x=>x.id===id):null;
+  draft=existing?JSON.parse(JSON.stringify(existing)):blankCard();
+  if(!Array.isArray(draft.categories)||!draft.categories.length) draft.categories=[CATS[0]?CATS[0].key:'items'];
+  if(!Array.isArray(draft.tags)) draft.tags=[];
   if(!Array.isArray(draft.stats)) draft.stats=[];
+  draft.imageFit=draft.imageFit==='contain'?'contain':'cover'; draft.imagePos=draft.imagePos||'50% 50%';
   previewMode='player';
-  document.getElementById('editorTitle').innerHTML=svg(existing?I.pencil:I.plus)+(existing?'Edit entry':'New entry');
-  buildEditorForm(!!existing);
-  renderPreview();
-  openOverlay('editorOverlay');
-  setTimeout(()=>document.getElementById('f_name')?.focus(),60);
+  document.getElementById('editorTitle').innerHTML=s(existing?UI.pencil:UI.plus)+(existing?'Edit entry':'New entry');
+  buildEditorForm(!!existing); renderPreview(); openOverlay('editorOverlay');
+  setTimeout(()=>{ const el=document.getElementById('f_name'); if(el) el.focus(); },60);
 }
 function buildEditorForm(isEdit){
   const f=document.getElementById('editorForm');
   f.innerHTML=
     '<div class="field"><label for="f_name">Name</label><input id="f_name" type="text" placeholder="e.g. Emberglass Dagger" value="'+escAttr(draft.name)+'"></div>'+
-    '<div class="field-row"><div class="field"><label for="f_cat">Category</label><select id="f_cat">'+
-      CATS.map(c=>'<option value="'+c.key+'"'+(c.key===draft.category?' selected':'')+'>'+c.full+'</option>').join('')+'</select></div></div>'+
-    '<div class="img-field"><div class="field" style="flex:1"><label for="f_img">Image URL</label><input id="f_img" type="url" placeholder="https://…" value="'+escAttr(draft.image)+'"></div><div class="img-prev" id="imgPrev"></div></div>'+
+    '<div class="field"><label>Categories <span style="text-transform:none;letter-spacing:0;color:var(--text-faint)">— pick one or more</span></label><div class="cat-choose" id="catChoose"></div></div>'+
+    '<div class="field"><label>Tags</label><div class="tags-edit"><div class="tag-chips" id="tagChips"></div><input id="tagInput" type="text" placeholder="Add a tag and press Enter"></div></div>'+
+    '<div class="field img-block"><label for="f_img">Image URL</label><input id="f_img" type="url" placeholder="https://…" value="'+escAttr(draft.image)+'">'+
+      '<div class="img-controls"><div class="fit-toggle" id="fitToggle"><button data-fit="cover">'+s(UI.crop,'sm')+'Fill</button><button data-fit="contain">'+s(UI.expand,'sm')+'Fit</button></div><span class="focal-hint" id="focalHint"></span></div>'+
+      '<div class="focal-box" id="focalBox"></div></div>'+
     '<div class="field"><label for="f_desc">Description</label><textarea id="f_desc" placeholder="What players read when they open this entry…">'+esc(draft.description)+'</textarea></div>'+
-    '<div class="visibility-toggle"><div class="vt-text"><strong>Visible to players</strong><span id="vt_sub">This entry appears in search and explore</span></div><button class="switch'+(draft.visible?' on':'')+'" id="f_visible" role="switch" aria-checked="'+draft.visible+'"></button></div>'+
-    '<div><div class="stats-editor-head"><label>Stats</label></div><div class="stat-edit-list" id="statList"></div><button class="add-stat" id="addStat">'+svg(I.plus,'sm')+'Add stat</button></div>'+
-    '<div class="editor-actions"><button class="btn gold full" id="saveBtn">'+svg(I.check,'sm')+'Save entry</button>'+(isEdit?'<button class="btn ghost-danger" id="delBtn">'+svg(I.trash,'sm')+'Delete</button>':'')+'</div>';
-  document.getElementById('f_name').oninput=e=>{draft.name=e.target.value;renderPreview();};
-  document.getElementById('f_cat').onchange=e=>{draft.category=e.target.value;renderPreview();updateImgPrev();};
-  document.getElementById('f_img').oninput=e=>{draft.image=e.target.value;updateImgPrev();renderPreview();};
-  document.getElementById('f_desc').oninput=e=>{draft.description=e.target.value;renderPreview();};
+    '<div class="visibility-toggle"><div class="vt-text"><strong>Visible to players</strong><span id="vt_sub"></span></div><button class="switch'+(draft.visible?' on':'')+'" id="f_visible" role="switch" aria-checked="'+draft.visible+'"></button></div>'+
+    '<div><div class="stats-editor-head"><label>Details <span class="hint">— label on the left, anything you like on the right</span></label></div><div class="stat-edit-list" id="statList"></div><button class="add-stat" id="addStat">'+s(UI.plus,'sm')+'Add detail</button></div>'+
+    '<div class="editor-actions"><button class="btn gold full" id="saveBtn">'+s(UI.check,'sm')+'Save entry</button>'+(isEdit?'<button class="btn ghost-danger" id="delBtn">'+s(UI.trash,'sm')+'Delete</button>':'')+'</div>';
+  document.getElementById('f_name').oninput=e=>{ draft.name=e.target.value; renderPreview(); };
+  document.getElementById('f_img').oninput=e=>{ draft.image=e.target.value; renderFocal(); renderPreview(); };
+  document.getElementById('f_desc').oninput=e=>{ draft.description=e.target.value; renderPreview(); };
   const vis=document.getElementById('f_visible');
-  vis.onclick=()=>{ draft.visible=!draft.visible; vis.classList.toggle('on',draft.visible); vis.setAttribute('aria-checked',draft.visible);
-    document.getElementById('vt_sub').textContent=draft.visible?'This entry appears in search and explore':'Hidden — only you can see this entry'; renderPreview(); };
-  document.getElementById('addStat').onclick=()=>{ draft.stats.push({id:uid(),label:'',value:'',visible:true}); renderStatRows(); renderPreview();
-    setTimeout(()=>{const rows=document.querySelectorAll('#statList .stat-edit-row');rows[rows.length-1]?.querySelector('input')?.focus();},20); };
+  const setVisSub=()=>document.getElementById('vt_sub').textContent=draft.visible?'This entry appears in search and explore':'Hidden — only you can see this entry';
+  setVisSub();
+  vis.onclick=()=>{ draft.visible=!draft.visible; vis.classList.toggle('on',draft.visible); vis.setAttribute('aria-checked',draft.visible); setVisSub(); renderPreview(); };
+  document.getElementById('fitToggle').querySelectorAll('button').forEach(b=>b.onclick=()=>{ draft.imageFit=b.dataset.fit; renderFitToggle(); renderFocal(); renderPreview(); });
+  document.getElementById('addStat').onclick=()=>{ draft.stats.push({id:uid(),label:'',value:'',visible:true}); renderStatRows(); renderPreview(); setTimeout(()=>{ const rows=document.querySelectorAll('#statList .stat-edit-row'); const last=rows[rows.length-1]; if(last) last.querySelector('input').focus(); },20); };
   document.getElementById('saveBtn').onclick=saveDraft;
   if(isEdit) document.getElementById('delBtn').onclick=()=>{ closeOverlay('editorOverlay'); deleteCard(draft.id); };
-  updateImgPrev(); renderStatRows();
+  const ti=document.getElementById('tagInput');
+  ti.onkeydown=e=>{ if(e.key==='Enter'){ e.preventDefault(); addTagFromInput(); } };
+  renderCatChoose(); renderTagChips(); renderFitToggle(); renderFocal(); renderStatRows();
 }
-function updateImgPrev(){
-  const p=document.getElementById('imgPrev');
-  if(draft.image){ p.innerHTML='<img src="'+escAttr(draft.image)+'" alt="" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\''+svg(I.image).replace(/'/g,"\\'")+'\'">'; }
-  else p.innerHTML=svg(I.image);
+function renderCatChoose(){
+  const box=document.getElementById('catChoose');
+  box.innerHTML=CATS.map(c=>{ const on=draft.categories.includes(c.key); return '<button type="button" class="cat-opt'+(on?' on':'')+'" data-key="'+escAttr(c.key)+'"><span class="dot" style="background:'+c.hue+'"></span>'+esc(c.label)+s(UI.check,'sm')+'</button>'; }).join('');
+  box.querySelectorAll('.cat-opt').forEach(b=>b.onclick=()=>{
+    const k=b.dataset.key;
+    if(draft.categories.includes(k)){ if(draft.categories.length<=1){ toast('An entry needs at least one category',UI.layers); return; } draft.categories=draft.categories.filter(x=>x!==k); }
+    else draft.categories.push(k);
+    renderCatChoose(); renderPreview();
+  });
+}
+function addTagFromInput(){
+  const inp=document.getElementById('tagInput'); let v=inp.value.trim().replace(/^#+/,''); if(!v) return;
+  if(draft.tags.some(t=>t.toLowerCase()===v.toLowerCase())){ inp.value=''; return; }
+  draft.tags.push(v); inp.value=''; renderTagChips(); renderPreview();
+}
+function renderTagChips(){
+  const box=document.getElementById('tagChips');
+  box.innerHTML=draft.tags.map((t,i)=>'<span class="tag-chip">#'+esc(t)+'<button data-i="'+i+'" aria-label="Remove">'+s(UI.x,'sm')+'</button></span>').join('');
+  box.querySelectorAll('button').forEach(b=>b.onclick=()=>{ draft.tags.splice(+b.dataset.i,1); renderTagChips(); renderPreview(); });
+}
+function renderFitToggle(){ document.getElementById('fitToggle').querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.fit===draft.imageFit)); document.getElementById('focalHint').textContent = draft.image ? (draft.imageFit==='cover'?'Tap the image to choose what stays in view':'Whole image shown — nothing cropped') : ''; }
+function posToXY(pos){ const m=String(pos||'50% 50%').match(/(-?\d+(?:\.\d+)?)%\s+(-?\d+(?:\.\d+)?)%/); return m?{x:+m[1],y:+m[2]}:{x:50,y:50}; }
+function renderFocal(){
+  const box=document.getElementById('focalBox');
+  if(!draft.image){ box.innerHTML='<div class="focal-empty">'+s(UI.image)+'Add an image URL to preview it here</div>'; box.onclick=null; return; }
+  const fit=draft.imageFit||'cover', pos=draft.imagePos||'50% 50%';
+  const showDot=fit==='cover'; const xy=posToXY(pos);
+  box.innerHTML=(fit==='contain'?'<div class="img-blurbg" style="background-image:'+cssUrl(draft.image)+'"></div>':'')+'<img class="img-main" src="'+escAttr(draft.image)+'" style="object-fit:'+fit+';object-position:'+pos+'" onerror="this.parentElement.innerHTML=\'<div class=focal-empty>'+'&#9888; that image URL did not load</div>\'">'+(showDot?'<span class="focal-dot" style="left:'+xy.x+'%;top:'+xy.y+'%"></span>':'');
+  if(fit==='cover'){ box.onclick=e=>{ const r=box.getBoundingClientRect(); let x=Math.round((e.clientX-r.left)/r.width*100); let y=Math.round((e.clientY-r.top)/r.height*100); x=Math.max(0,Math.min(100,x)); y=Math.max(0,Math.min(100,y)); draft.imagePos=x+'% '+y+'%'; renderFocal(); renderPreview(); }; }
+  else box.onclick=null;
 }
 function renderStatRows(){
   const list=document.getElementById('statList');
-  list.innerHTML=draft.stats.map((s,i)=>
-    '<div class="stat-edit-row" data-i="'+i+'">'+
-      '<input data-field="label" placeholder="Label" value="'+escAttr(s.label)+'">'+
-      '<input class="val" data-field="value" placeholder="Value" value="'+escAttr(s.value)+'">'+
-      '<div class="row-ctrls"><div class="move-col">'+
-        '<button class="rbtn mv" data-mv="up" '+(i===0?'disabled style="opacity:.3;pointer-events:none"':'')+'>'+svg(I.up,'sm')+'</button>'+
-        '<button class="rbtn mv" data-mv="down" '+(i===draft.stats.length-1?'disabled style="opacity:.3;pointer-events:none"':'')+'>'+svg(I.down,'sm')+'</button></div>'+
-        '<button class="rbtn eye '+(s.visible?'off':'on')+'" data-act="toggle" title="'+(s.visible?'Visible to players — click to hide':'Hidden from players — click to show')+'">'+svg(s.visible?I.eye:I.eyeoff,'sm')+'</button>'+
-        '<button class="rbtn del" data-act="del" title="Remove stat">'+svg(I.trash,'sm')+'</button>'+
-      '</div></div>'
-  ).join('');
-  list.querySelectorAll('input').forEach(inp=>{ inp.oninput=()=>{ const i=+inp.closest('.stat-edit-row').dataset.i; draft.stats[i][inp.dataset.field]=inp.value; renderPreview(); }; });
-  list.querySelectorAll('.rbtn').forEach(btn=>{ btn.onclick=()=>{
-    const i=+btn.closest('.stat-edit-row').dataset.i;
+  list.innerHTML=draft.stats.map((st,i)=>'<div class="stat-edit-row" data-i="'+i+'"><input class="lbl" data-field="label" placeholder="Label" value="'+escAttr(st.label)+'"><textarea class="val" data-field="value" placeholder="Value — write as much as you need" rows="1">'+esc(st.value)+'</textarea><div class="row-ctrls"><div class="move-col"><button class="rbtn mv" data-mv="up" '+(i===0?'disabled style="opacity:.3;pointer-events:none"':'')+'>'+s(UI.up,'sm')+'</button><button class="rbtn mv" data-mv="down" '+(i===draft.stats.length-1?'disabled style="opacity:.3;pointer-events:none"':'')+'>'+s(UI.down,'sm')+'</button></div><button class="rbtn eye '+(st.visible?'':'on')+'" data-act="toggle" title="'+(st.visible?'Visible to players — click to hide':'Hidden from players — click to show')+'">'+s(st.visible?UI.eye:UI.eyeoff,'sm')+'</button><button class="rbtn del" data-act="del" title="Remove">'+s(UI.trash,'sm')+'</button></div></div>').join('');
+  list.querySelectorAll('input,textarea').forEach(inp=>{ inp.oninput=()=>{ const i=+inp.closest('.stat-edit-row').dataset.i; draft.stats[i][inp.dataset.field]=inp.value; if(inp.tagName==='TEXTAREA') autoGrow(inp); renderPreview(); }; if(inp.tagName==='TEXTAREA') autoGrow(inp); });
+  list.querySelectorAll('.rbtn').forEach(btn=>{ btn.onclick=()=>{ const i=+btn.closest('.stat-edit-row').dataset.i;
     if(btn.dataset.act==='del'){ draft.stats.splice(i,1); }
     else if(btn.dataset.act==='toggle'){ draft.stats[i].visible=!draft.stats[i].visible; }
-    else if(btn.dataset.mv==='up'&&i>0){ [draft.stats[i-1],draft.stats[i]]=[draft.stats[i],draft.stats[i-1]]; }
-    else if(btn.dataset.mv==='down'&&i<draft.stats.length-1){ [draft.stats[i+1],draft.stats[i]]=[draft.stats[i],draft.stats[i+1]]; }
-    renderStatRows(); renderPreview();
-  }; });
+    else if(btn.dataset.mv==='up'&&i>0){ const t=draft.stats[i-1]; draft.stats[i-1]=draft.stats[i]; draft.stats[i]=t; }
+    else if(btn.dataset.mv==='down'&&i<draft.stats.length-1){ const t=draft.stats[i+1]; draft.stats[i+1]=draft.stats[i]; draft.stats[i]=t; }
+    renderStatRows(); renderPreview(); }; });
 }
 function renderPreview(){
-  const p=document.getElementById('editorPreview');
-  const asPlayer = previewMode==='player';
-  const c=draft; const cat=catMap[c.category]||CATS[0];
-  const stats=c.stats.filter(s=> asPlayer ? s.visible : true);
-  const hero = c.image
-    ? '<div class="detail-hero" style="height:170px"><img src="'+escAttr(c.image)+'" alt="" onerror="this.style.display=\'none\';this.parentElement.querySelector(\'.ph\').style.display=\'grid\'"><div class="ph" style="display:none">'+catIconSvg(c.category)+'</div></div>'
-    : '<div class="detail-hero" style="height:170px"><div class="ph">'+catIconSvg(c.category)+'</div></div>';
-  let statHtml='';
-  if(stats.length){
-    statHtml='<div class="stat-block"><div class="stat-block-label">Details</div>'+
-      stats.map(s=>{ const secret=!asPlayer&&!s.visible;
-        return '<div class="stat-row'+(secret?' secret':'')+'">'+
-          '<span class="stat-label">'+(secret?svg(I.eyeoff,'sm'):'')+esc(s.label||'—')+'</span>'+
-          '<span class="stat-value">'+esc(s.value||'—')+'</span></div>'; }).join('')+'</div>';
-  }
-  const hiddenCardNote = (!asPlayer && !c.visible)?'<div class="detail-hidden-note">'+svg(I.eyeoff,'sm')+'Hidden from players</div>':'';
-  const playerEmpty = asPlayer && !c.visible
-    ? '<div class="empty" style="margin-top:14px;padding:34px 16px">'+svg(I.eyeoff,'lg')+'<strong>Hidden entry</strong>Players can\'t see this at all right now.</div>' : '';
-  p.innerHTML=
-    '<div class="preview-tag"><span>Live preview</span><div class="view-as"><button class="'+(asPlayer?'active':'')+'" data-pm="player">As player</button><button class="'+(!asPlayer?'active':'')+'" data-pm="dm">As keeper</button></div></div>'+
-    (playerEmpty || (hero+'<div style="padding:18px 2px 0">'+
-      '<span class="detail-cat"><span class="dot" style="background:'+cat.hue+'"></span>'+cat.full+'</span>'+
-      '<h2 class="detail-name" style="font-size:26px">'+esc(c.name||'Untitled')+'</h2>'+hiddenCardNote+
-      (c.description?'<div class="detail-desc">'+esc(c.description)+'</div>':'')+statHtml+'</div>'));
-  p.querySelectorAll('.view-as button').forEach(b=>b.onclick=()=>{previewMode=b.dataset.pm;renderPreview();});
+  const p=document.getElementById('editorPreview'); const asPlayer=previewMode==='player'; const c=draft; const cats=catsOf(c);
+  const stats=c.stats.filter(st=> asPlayer ? st.visible : true);
+  const catHtml='<div class="detail-cats">'+cats.map(cat=>'<span class="detail-cat"><span class="dot" style="background:'+cat.hue+'"></span>'+esc(cat.label)+'</span>').join('')+'</div>';
+  const tagHtml=c.tags.length?'<div class="detail-tags">'+c.tags.map(t=>'<span class="t">#'+esc(t)+'</span>').join('')+'</div>':'';
+  const hiddenCardNote=(!asPlayer&&!c.visible)?'<div class="detail-hidden-note">'+s(UI.eyeoff,'sm')+'Hidden from players</div>':'';
+  const playerEmpty = asPlayer&&!c.visible ? '<div class="empty" style="margin-top:14px;padding:34px 16px">'+s(UI.eyeoff,'lg')+'<strong>Hidden entry</strong>Players can\'t see this at all right now.</div>' : '';
+  const showSecretMark=!asPlayer;
+  const body=hiddenCardNote+catHtml+'<h2 class="detail-name" style="font-size:26px">'+esc(c.name||'Untitled')+'</h2>'+tagHtml+(c.description?'<div class="detail-desc">'+esc(c.description)+'</div>':'')+statsHTML(stats,showSecretMark);
+  p.innerHTML='<div class="preview-tag"><span>Live preview</span><div class="view-as"><button class="'+(asPlayer?'active':'')+'" data-pm="player">As player</button><button class="'+(!asPlayer?'active':'')+'" data-pm="dm">As keeper</button></div></div>'+(playerEmpty || ('<div class="detail-hero" style="height:170px;border-radius:14px">'+imageMarkup(c)+'</div><div style="padding:16px 2px 0">'+body+'</div>'));
+  p.querySelectorAll('.view-as button').forEach(b=>b.onclick=()=>{ previewMode=b.dataset.pm; renderPreview(); });
 }
 async function saveDraft(){
-  if(!draft.name.trim()){ toast('Give the entry a name first',I.pencil); document.getElementById('f_name').focus(); return; }
-  draft.stats=draft.stats.filter(s=>s.label.trim()||s.value.trim());
-  const clean={id:draft.id,name:draft.name.trim(),category:draft.category,image:draft.image.trim(),visible:draft.visible,description:draft.description,stats:draft.stats};
-  try{
-    await api('/api/save-card',{method:'POST',body:clean});
-    closeOverlay('editorOverlay'); await refreshData(); toast('Entry saved',I.check);
-  }catch(e){ toast(e.message||'Could not save',I.x); }
+  if(!draft.name.trim()){ toast('Give the entry a name first',UI.pencil); document.getElementById('f_name').focus(); return; }
+  if(!draft.categories.length) draft.categories=[CATS[0]?CATS[0].key:'items'];
+  draft.stats=draft.stats.filter(st=>String(st.label).trim()||String(st.value).trim());
+  const clean={id:draft.id,name:draft.name.trim(),categories:draft.categories,tags:draft.tags,image:draft.image.trim(),imageFit:draft.imageFit,imagePos:draft.imagePos,visible:draft.visible,description:draft.description,stats:draft.stats};
+  try{ await api('/api/save-card',{method:'POST',body:clean}); closeOverlay('editorOverlay'); await refreshData(); toast('Entry saved',UI.check); }
+  catch(e){ toast(e.message||'Could not save',UI.x); }
 }
 
-/* ============ LOGIN ============ */
+/* ===== CATEGORY MANAGER ===== */
+let catDraft=[], iconPickFor=null;
+function openCatManager(){ catDraft=JSON.parse(JSON.stringify(CATS)); iconPickFor=null; renderCatManager(); openOverlay('catOverlay'); }
+function renderCatManager(){
+  const body=document.getElementById('catMgrBody');
+  if(iconPickFor!==null){
+    body.innerHTML='<div class="catmgr-head"><h2>'+s(UI.layers)+'Choose an icon</h2></div><div class="catmgr-body"><div class="picker-head"><button class="picker-back" id="pickBack">'+s(UI.back,'sm')+'Back</button></div><div class="icon-picker" id="iconPicker"></div></div>';
+    document.getElementById('pickBack').onclick=()=>{ iconPickFor=null; renderCatManager(); };
+    document.getElementById('iconPicker').innerHTML=ICON_NAMES.map(n=>'<button class="icon-opt" data-icon="'+n+'">'+icon(n)+'</button>').join('');
+    document.querySelectorAll('#iconPicker .icon-opt').forEach(b=>b.onclick=()=>{ catDraft[iconPickFor].icon=b.dataset.icon; iconPickFor=null; renderCatManager(); });
+    return;
+  }
+  body.innerHTML='<div class="catmgr-head"><h2>'+s(UI.layers)+'Manage categories</h2><p>Add, rename, recolour, reorder, or remove. Removing a category pulls it off any entries that used it.</p></div>'+
+    '<div class="catmgr-body"><div class="cat-rows" id="catRows"></div><button class="add-stat" id="addCat" style="margin-top:12px">'+s(UI.plus,'sm')+'Add category</button>'+
+    '<div class="catmgr-actions"><button class="btn gold full" id="catSave">'+s(UI.check,'sm')+'Save categories</button><button class="btn" id="catCancel">Cancel</button></div></div>';
+  const rows=document.getElementById('catRows');
+  rows.innerHTML=catDraft.map((c,i)=>'<div class="cat-row" data-i="'+i+'"><div class="cat-move"><button class="rbtn" data-mv="up" '+(i===0?'disabled style="opacity:.3;pointer-events:none"':'')+'>'+s(UI.up,'sm')+'</button><button class="rbtn" data-mv="down" '+(i===catDraft.length-1?'disabled style="opacity:.3;pointer-events:none"':'')+'>'+s(UI.down,'sm')+'</button></div><button class="cat-iconbtn" data-act="icon" title="Change icon">'+icon(c.icon)+'</button><input class="cat-color" type="color" value="'+escAttr(c.hue)+'" title="Colour"><input class="cat-name-in" type="text" value="'+escAttr(c.label)+'" placeholder="Category name"><button class="cat-del" data-act="del" title="Remove">'+s(UI.trash,'sm')+'</button></div>').join('');
+  rows.querySelectorAll('.cat-row').forEach(row=>{
+    const i=+row.dataset.i;
+    row.querySelector('.cat-name-in').oninput=e=>{ catDraft[i].label=e.target.value; };
+    row.querySelector('.cat-color').oninput=e=>{ catDraft[i].hue=e.target.value; };
+    row.querySelector('[data-act="icon"]').onclick=()=>{ iconPickFor=i; renderCatManager(); };
+    row.querySelector('[data-act="del"]').onclick=()=>{ if(catDraft.length<=1){ toast('Keep at least one category',UI.layers); return; } catDraft.splice(i,1); renderCatManager(); };
+    row.querySelectorAll('[data-mv]').forEach(b=>b.onclick=()=>{ const d=b.dataset.mv; if(d==='up'&&i>0){ const t=catDraft[i-1]; catDraft[i-1]=catDraft[i]; catDraft[i]=t; } else if(d==='down'&&i<catDraft.length-1){ const t=catDraft[i+1]; catDraft[i+1]=catDraft[i]; catDraft[i]=t; } renderCatManager(); });
+  });
+  document.getElementById('addCat').onclick=()=>{ catDraft.push({key:'c_'+uid(),label:'New Category',hue:'#8A93A8',icon:'scroll'}); renderCatManager(); setTimeout(()=>{ const ins=document.querySelectorAll('#catRows .cat-name-in'); const last=ins[ins.length-1]; if(last){ last.focus(); last.select(); } },20); };
+  document.getElementById('catCancel').onclick=()=>closeOverlay('catOverlay');
+  document.getElementById('catSave').onclick=saveCategories;
+}
+async function saveCategories(){
+  const clean=catDraft.filter(c=>String(c.label).trim()).map(c=>({key:c.key,label:String(c.label).trim(),hue:c.hue||'#8A93A8',icon:c.icon||'scroll'}));
+  if(!clean.length){ toast('Add at least one category',UI.layers); return; }
+  const newKeys=new Set(clean.map(c=>c.key));
+  const removed=CATS.map(c=>c.key).filter(k=>!newKeys.has(k));
+  const fallback=clean[0].key;
+  try{
+    if(removed.length){
+      const affected=DATA.cards.filter(c=>(c.categories||[]).some(k=>removed.includes(k)));
+      if(affected.length) toast('Updating '+affected.length+' affected '+(affected.length===1?'entry':'entries')+'…',UI.layers);
+      for(const c of affected){
+        let cats=(c.categories||[]).filter(k=>!removed.includes(k));
+        if(!cats.length) cats=[fallback];
+        await api('/api/save-card',{method:'POST',body:{id:c.id,name:c.name,categories:cats,tags:c.tags,image:c.image,imageFit:c.imageFit,imagePos:c.imagePos,visible:c.visible,description:c.description,stats:c.stats}});
+      }
+    }
+    await api('/api/save-categories',{method:'POST',body:{categories:clean}});
+    closeOverlay('catOverlay'); await refreshData(); toast('Categories saved',UI.check);
+  }catch(e){ toast(e.message||'Could not save categories',UI.x); }
+}
+
+/* ===== LOGIN ===== */
 function openLogin(){
   const body=document.getElementById('loginBody');
-  body.innerHTML=
-    '<div class="login-sigil">'+svg(I.key,'lg')+'</div>'+
-    '<h2>Keeper login</h2>'+
-    '<p>Enter the passphrase to add, edit, and reveal entries.</p>'+
-    '<input id="passInput" type="password" placeholder="Passphrase" autocomplete="current-password">'+
-    '<div class="login-err" id="loginErr"></div>'+
-    '<button class="btn gold full" id="loginGo">'+svg(I.key,'sm')+'Unlock</button>'+
-    '<div class="login-foot">The passphrase is set by whoever deployed this archive. It protects editing only — reading is open to everyone with the link.</div>';
-  openOverlay('loginOverlay');
-  setTimeout(()=>document.getElementById('passInput')?.focus(),60);
+  body.innerHTML='<div class="login-sigil">'+s(UI.key,'lg')+'</div><h2>Keeper login</h2><p>Enter the passphrase to add, edit, and reveal entries.</p><input id="passInput" type="password" placeholder="Passphrase" autocomplete="current-password"><div class="login-err" id="loginErr"></div><button class="btn gold full" id="loginGo">'+s(UI.key,'sm')+'Unlock</button><div class="login-foot">The passphrase is set by whoever deployed this archive. It protects editing only — reading is open to everyone with the link.</div>';
+  openOverlay('loginOverlay'); setTimeout(()=>{ const el=document.getElementById('passInput'); if(el) el.focus(); },60);
   const err=document.getElementById('loginErr');
-  const attempt=async()=>{
-    const pass=document.getElementById('passInput').value;
-    if(!pass){ err.textContent='Enter the passphrase.'; return; }
-    err.textContent='';
-    try{
-      await api('/api/login',{method:'POST',body:{password:pass}});
-      closeOverlay('loginOverlay'); await refreshData(); toast('Welcome, keeper',I.key);
-    }catch(e){ err.textContent='That passphrase doesn’t match.'; document.getElementById('passInput').select(); }
-  };
+  const attempt=async()=>{ const pass=document.getElementById('passInput').value; if(!pass){ err.textContent='Enter the passphrase.'; return; } err.textContent='';
+    try{ await api('/api/login',{method:'POST',body:{password:pass}}); closeOverlay('loginOverlay'); await refreshData(); toast('Welcome, keeper',UI.key); }
+    catch(e){ err.textContent='That passphrase does not match.'; document.getElementById('passInput').select(); } };
   document.getElementById('loginGo').onclick=attempt;
-  body.querySelectorAll('input').forEach(inp=>inp.onkeydown=e=>{if(e.key==='Enter')attempt();});
+  body.querySelectorAll('input').forEach(inp=>inp.onkeydown=e=>{ if(e.key==='Enter') attempt(); });
 }
-async function logout(){
-  try{ await api('/api/logout',{method:'POST'}); }catch(e){}
-  document.getElementById('settingsMenu').classList.remove('open');
-  await refreshData(); toast('Locked',I.lock);
-}
+async function logout(){ try{ await api('/api/logout',{method:'POST'}); }catch(e){} document.getElementById('settingsMenu').classList.remove('open'); await refreshData(); toast('Locked',UI.lock); }
 
-/* ============ SETTINGS MENU ============ */
+/* ===== SETTINGS MENU ===== */
 function buildSettingsMenu(){
   const m=document.getElementById('settingsMenu');
-  m.innerHTML=
-    '<button class="menu-item" data-act="rename">'+svg(I.pencil,'sm')+'Rename archive</button>'+
-    '<div class="menu-sep"></div>'+
-    '<button class="menu-item" data-act="export">'+svg(I.download,'sm')+'Export backup (.json)</button>'+
-    '<button class="menu-item" data-act="import">'+svg(I.upload,'sm')+'Import backup</button>'+
-    '<div class="menu-sep"></div>'+
-    '<button class="menu-item danger" data-act="logout">'+svg(I.lock,'sm')+'Lock the archive</button>'+
-    '<div class="menu-note">To change the passphrase, update DM_PASSWORD in your host settings and redeploy.</div>';
+  m.innerHTML='<button class="menu-item" data-act="rename">'+s(UI.pencil,'sm')+'Rename archive</button><button class="menu-item" data-act="categories">'+s(UI.layers,'sm')+'Manage categories</button><button class="menu-item" data-act="hero">'+s(UI.image,'sm')+'Set campaign art</button><div class="menu-sep"></div><button class="menu-item" data-act="export">'+s(UI.download,'sm')+'Export backup (.json)</button><button class="menu-item" data-act="import">'+s(UI.upload,'sm')+'Import backup</button><div class="menu-sep"></div><button class="menu-item danger" data-act="logout">'+s(UI.lock,'sm')+'Lock the archive</button><div class="menu-note">To change the passphrase, update DM_PASSWORD in your host settings and redeploy.</div>';
   m.querySelectorAll('.menu-item').forEach(b=>b.onclick=()=>{ m.classList.remove('open'); handleSetting(b.dataset.act); });
 }
 async function handleSetting(act){
   if(act==='logout') return logout();
+  if(act==='categories') return openCatManager();
   if(act==='rename'){
     const t=prompt('Archive title:',DATA.meta.title); if(t===null) return;
-    const s=prompt('Subtitle:',DATA.meta.subtitle); if(s===null) return;
-    try{
-      await api('/api/save-meta',{method:'POST',body:{title:t.trim()||DATA.meta.title,subtitle:s.trim()}});
-      DATA.meta.title=t.trim()||DATA.meta.title; DATA.meta.subtitle=s.trim();
-      renderBrand(); toast('Archive renamed',I.pencil);
-    }catch(e){ toast(e.message||'Could not rename',I.x); }
+    const sub=prompt('Subtitle:',DATA.meta.subtitle); if(sub===null) return;
+    try{ await api('/api/save-meta',{method:'POST',body:{title:t.trim()||DATA.meta.title,subtitle:sub.trim(),heroImage:DATA.meta.heroImage}}); DATA.meta.title=t.trim()||DATA.meta.title; DATA.meta.subtitle=sub.trim(); renderBrand(); toast('Archive renamed',UI.pencil); }
+    catch(e){ toast(e.message||'Could not rename',UI.x); }
+  }
+  if(act==='hero'){
+    const url=prompt('Campaign art image URL (leave blank to remove).\nTip: /campaign-hero.png uses the image bundled with the site.',DATA.meta.heroImage||''); if(url===null) return;
+    try{ await api('/api/save-meta',{method:'POST',body:{title:DATA.meta.title,subtitle:DATA.meta.subtitle,heroImage:url.trim()}}); DATA.meta.heroImage=url.trim(); renderHero(); toast(url.trim()?'Campaign art set':'Campaign art removed',UI.image); }
+    catch(e){ toast(e.message||'Could not update art',UI.x); }
   }
   if(act==='export'){
-    const blob=new Blob([JSON.stringify({meta:DATA.meta,cards:DATA.cards},null,2)],{type:'application/json'});
-    const url=URL.createObjectURL(blob); const a=document.createElement('a');
-    a.href=url; a.download=(DATA.meta.title||'codex').replace(/[^a-z0-9]+/gi,'-').toLowerCase()+'-backup.json';
-    a.click(); URL.revokeObjectURL(url); toast('Backup downloaded',I.download);
+    const blob=new Blob([JSON.stringify({meta:DATA.meta,categories:CATS,cards:DATA.cards},null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=(DATA.meta.title||'codex').replace(/[^a-z0-9]+/gi,'-').toLowerCase()+'-backup.json'; a.click(); URL.revokeObjectURL(url); toast('Backup downloaded',UI.download);
   }
   if(act==='import'){
     const inp=document.createElement('input'); inp.type='file'; inp.accept='application/json,.json';
-    inp.onchange=()=>{ const file=inp.files[0]; if(!file) return;
-      const r=new FileReader();
-      r.onload=async()=>{ try{
-        const obj=JSON.parse(r.result);
-        const cards=Array.isArray(obj)?obj:(obj.cards||[]);
-        if(!cards.length){ toast('No entries found in file',I.x); return; }
+    inp.onchange=()=>{ const file=inp.files[0]; if(!file) return; const r=new FileReader();
+      r.onload=async()=>{ try{ const obj=JSON.parse(r.result); const cards=Array.isArray(obj)?obj:(obj.cards||[]);
+        if(!cards.length){ toast('No entries found in file',UI.x); return; }
         if(!confirm('Import '+cards.length+' entries? Entries with the same id are overwritten.')) return;
-        toast('Importing '+cards.length+'…',I.upload);
-        for(const c of cards){
-          if(!c||!c.id||!c.name) continue;
-          await api('/api/save-card',{method:'POST',body:{
-            id:String(c.id),name:String(c.name),category:c.category||'items',image:c.image||'',
-            visible:c.visible!==false,description:c.description||'',stats:Array.isArray(c.stats)?c.stats:[]
-          }});
+        toast('Importing '+cards.length+'…',UI.upload);
+        for(const c of cards){ if(!c||!c.id||!c.name) continue;
+          await api('/api/save-card',{method:'POST',body:{ id:String(c.id),name:String(c.name),categories:Array.isArray(c.categories)&&c.categories.length?c.categories:(c.category?[c.category]:[]),tags:Array.isArray(c.tags)?c.tags:[],image:c.image||'',imageFit:(c.image_fit||c.imageFit)==='contain'?'contain':'cover',imagePos:c.image_pos||c.imagePos||'50% 50%',visible:c.visible!==false,description:c.description||'',stats:Array.isArray(c.stats)?c.stats:[] }});
         }
-        await refreshData(); toast('Import complete',I.check);
-      }catch(e){ toast('That file isn’t a valid backup',I.x); } };
-      r.readAsText(file);
-    };
+        await refreshData(); toast('Import complete',UI.check);
+      }catch(e){ toast('That file is not a valid backup',UI.x); } };
+      r.readAsText(file); };
     inp.click();
   }
 }
 
-/* ============ NAV ============ */
+/* ===== NAV ===== */
 function setView(v){
   view=v;
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.view===v));
   document.getElementById('searchView').style.display = v==='search'?'block':'none';
   document.getElementById('exploreView').style.display = v==='explore'?'block':'none';
   if(v==='explore'){ activeCat=null; document.getElementById('exploreFiltered').style.display='none'; document.getElementById('exploreCats').style.display='block'; renderExplore(); }
-  if(v==='search'){ document.getElementById('searchInput').focus(); }
+  if(v==='search'){ const el=document.getElementById('searchInput'); if(el) el.focus(); }
 }
-function refreshAll(){
-  renderQuicklinks();
-  if(view==='search') runSearch();
-  if(view==='explore'){ if(activeCat) openCategory(activeCat); else renderExplore(); }
-}
+function refreshAll(){ renderQuicklinks(); renderTags(); if(view==='search') runSearch(); if(view==='explore'){ if(activeCat) openCategory(activeCat); else renderExplore(); } }
 
-/* ============ OVERLAY ============ */
+/* ===== OVERLAY ===== */
 function openOverlay(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
 function closeOverlay(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
 
-/* ============ ESCAPING ============ */
-function esc(s){ return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function escAttr(s){ return String(s??'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-/* ============ LOAD ERROR ============ */
+/* ===== LOAD ERROR ===== */
 function showLoadError(msg){
-  document.querySelector('main').innerHTML=
-    '<div class="empty" style="margin-top:60px;max-width:580px;margin-left:auto;margin-right:auto">'+
-    svg(I.x,'lg')+'<strong>Couldn’t reach the archive</strong>'+
-    'The page loaded, but the database didn’t respond. If you just deployed, make sure your Supabase environment variables are set in your host and redeploy.'+
-    '<br><br><span style="font-family:var(--mono);font-size:12px;color:var(--text-faint)">'+esc(msg||'')+'</span></div>';
+  document.querySelector('main').innerHTML='<div class="empty" style="margin-top:60px;max-width:580px;margin-left:auto;margin-right:auto">'+s(UI.x,'lg')+'<strong>Could not reach the archive</strong>The page loaded, but the database did not respond. If you just deployed, make sure your Supabase environment variables are set in your host and redeploy.<br><br><span style="font-family:var(--mono);font-size:12px;color:var(--text-faint)">'+esc(msg||'')+'</span></div>';
 }
 
-/* ============ EVENTS ============ */
-document.getElementById('searchInput').addEventListener('input',e=>{query=e.target.value;runSearch();});
-document.getElementById('searchClear').addEventListener('click',()=>{query='';document.getElementById('searchInput').value='';document.getElementById('searchInput').focus();runSearch();});
+/* ===== EVENTS ===== */
+document.getElementById('searchInput').addEventListener('input',e=>{ query=e.target.value; runSearch(); });
+document.getElementById('searchClear').addEventListener('click',()=>{ query=''; document.getElementById('searchInput').value=''; document.getElementById('searchInput').focus(); runSearch(); });
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>setView(t.dataset.view)));
 document.getElementById('brandBtn').addEventListener('click',()=>{ setView('search'); query=''; document.getElementById('searchInput').value=''; runSearch(); });
 document.getElementById('dmLoginBtn').addEventListener('click',openLogin);
@@ -748,14 +876,14 @@ document.getElementById('gearBtn').addEventListener('click',e=>{ e.stopPropagati
 document.addEventListener('click',()=>document.getElementById('settingsMenu').classList.remove('open'));
 document.getElementById('detailClose').addEventListener('click',()=>closeOverlay('detailOverlay'));
 document.getElementById('editorClose').addEventListener('click',()=>closeOverlay('editorOverlay'));
+document.getElementById('catClose').addEventListener('click',()=>closeOverlay('catOverlay'));
 document.getElementById('loginClose').addEventListener('click',()=>closeOverlay('loginOverlay'));
-['detailOverlay','editorOverlay','loginOverlay'].forEach(id=>{ document.getElementById(id).addEventListener('mousedown',e=>{ if(e.target.id===id) closeOverlay(id); }); });
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ ['detailOverlay','editorOverlay','loginOverlay'].forEach(closeOverlay); }});
+['detailOverlay','editorOverlay','catOverlay','loginOverlay'].forEach(id=>{ document.getElementById(id).addEventListener('mousedown',e=>{ if(e.target.id===id) closeOverlay(id); }); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ ['detailOverlay','editorOverlay','catOverlay','loginOverlay'].forEach(closeOverlay); } });
 
-/* ============ INIT ============ */
+/* ===== INIT ===== */
 (async function init(){
-  renderStaticChrome();
-  buildSettingsMenu();
+  renderStaticChrome(); buildSettingsMenu();
   try{ await refreshData(); }
   catch(e){ showLoadError(e.message); return; }
   setView('search');
